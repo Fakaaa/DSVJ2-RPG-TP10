@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GameManagerScript;
 
 namespace EnemyAIFSMScript
 {
@@ -10,11 +11,14 @@ namespace EnemyAIFSMScript
         [Header("Test")]
         public GameObject itemPrefab;
         public Transform container;
+        [SerializeField] private GameObject collideMelee;
+        private bool attacked = false;
 
         public enum EnemyState
         {
             Idle,
             GoingToTarget,
+            Attacking,
             GoAway,
             Last
         }
@@ -28,6 +32,11 @@ namespace EnemyAIFSMScript
         public float timeStopped = 1;
         public Transform target;
         private float time;
+
+        private void Awake()
+        {
+            GameManager.Get().AddEnemyToList(gameObject);
+        }
 
         private void Start()
         {
@@ -60,13 +69,21 @@ namespace EnemyAIFSMScript
                     // Si toca al player le saca una vida y se aleja
                     if (Vector3.Distance(transform.position, target.transform.position) < distanceToStop)
                     {
-                        //OnGetLifePlayer?.Invoke(lifeTakeOutPlayer);
+                        Attack();
                         NextState();
+                    }
+                    break;
+                case EnemyState.Attacking:
+                    if (attacked)
+                    {
+                        NextState();
+                        collideMelee.SetActive(false);
+                        attacked = false;
                     }
                     break;
                 case EnemyState.GoAway:
                     Vector3 dir02 = new Vector3(transform.position.x - target.transform.position.x, 0, transform.position.z - target.transform.position.z);
-                    transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
+                    transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);                    
 
                     // Cuando llego a cierto punto vuelve a su comportamiento erratico
                     if (Vector3.Distance(transform.position, target.transform.position) > distanceToRestart)
@@ -91,19 +108,8 @@ namespace EnemyAIFSMScript
 
         public void Attack()
         {
-            if (!enemyData.attackReady)
-                enemyData.coldownAttack += Time.deltaTime;
-            
-            if (enemyData.coldownAttack >= enemyData.resetColdown && !enemyData.attackReady)
-            {
-                enemyData.attackReady = true;
-                enemyData.coldownAttack = 0;
-            }
-            
-            if (Input.GetButton("Fire1") && enemyData.attackReady)
-            {
-                enemyData.attackReady = false;
-            }
+            collideMelee.SetActive(true);
+            // Aca se activaria la animacion
         }
 
         public void ReceiveDamage(int damageTaken)
@@ -128,9 +134,14 @@ namespace EnemyAIFSMScript
                 if (myBody != null)
                     myBody.AddExplosionForce(3, other.transform.position, 4, 2, ForceMode.Impulse);
 
+                attacked = true;
                 ReceiveDamage(5);
-                Debug.Log("Entro?");
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Get().RemoveEnemyToList(gameObject);
         }
     }
 }

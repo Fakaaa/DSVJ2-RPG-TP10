@@ -123,6 +123,9 @@ MonoBehaviour:
     characterAlive: 1
     actualAttackType: 0
     rangeAttack: 0.7
+    coldownAttack: 0
+    resetColdown: 0.3
+    attackReady: 1
   collideMelee: {fileID: 673836601375564358}
 --- !u!1001 &2415616700972054376
 PrefabInstance:

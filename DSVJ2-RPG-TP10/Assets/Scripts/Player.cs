@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GameManagerScript;
 
 namespace PlayerScript
 {
@@ -73,7 +74,7 @@ namespace PlayerScript
             {
                 playerData.characterHp = 0;
                 playerData.characterAlive = false;
-                //End game
+                GameManager.Get().GameIsOver();
             }
         }
         void CheckIfIsOnGround()
@@ -122,10 +123,9 @@ namespace PlayerScript
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.CompareTag("MeleeAttackPlayer"))
+            if (other.transform.CompareTag("MeleeAttackEnemy"))
             {             
                 ReceiveDamage(5);
-                Debug.Log("Player");
             }
         }
     }
