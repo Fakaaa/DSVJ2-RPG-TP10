@@ -30,7 +30,7 @@ namespace PlayerScript
         void Update()
         {
             MovePlayer();
-
+            CheckIfIsOnGround();
             Attack();
         }
         public void Attack()
@@ -76,6 +76,22 @@ namespace PlayerScript
                 //End game
             }
         }
+        void CheckIfIsOnGround()
+        {
+            RaycastHit hit;
+            Ray raycast = new Ray(transform.position, -transform.up * 0.1f);
+            Debug.DrawRay(raycast.origin, raycast.direction * 0.1f, Color.red);
+            if (Physics.Raycast(raycast, out hit, 0.1f))
+            {
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    isOnAir = false;
+                    playerVelocity.y = 0;
+                }
+            }
+            else
+                isOnAir = true;
+        }
         void ApplyGravity()
         {
             playerVelocity.y += gravityValue * Time.deltaTime;
@@ -83,21 +99,8 @@ namespace PlayerScript
         }
         void Jump()
         {
-            isGrounded = playerMovement.isGrounded;
-
-            if (isGrounded && playerVelocity.y < 0 && isOnAir)
-            {
-                isOnAir = false;
-                playerVelocity.y = 0;
-            }
-
-            if (Input.GetKey(KeyCode.Space) && !isOnAir)
-            {
-                playerVelocity.y += Mathf.Sqrt(jumpPower * -3.0f * gravityValue);
-            }
-
-            if (playerVelocity.y >= jumpPower)
-                isOnAir = true;
+            if (Input.GetKeyDown(KeyCode.Space) && !isOnAir)
+                playerVelocity.y = Mathf.Sqrt(jumpPower * -3.0f * gravityValue);
 
             ApplyGravity();
         }
