@@ -16,7 +16,7 @@ namespace CameraFollowScript
 
         private void Awake()
         {
-            lookAtPlayer = true;
+            lookAtPlayer = false;
         }
         public void LookAtPlayer()
         {
