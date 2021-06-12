@@ -10,7 +10,7 @@ namespace CollectibleItemScript
 
         private void Start()
         {
-            GameObject go = Instantiate(particles, transform.position, Quaternion.identity).gameObject;
+            GameObject go = Instantiate(particles, transform.position, particles.gameObject.transform.rotation).gameObject;
             go.transform.parent = gameObject.transform;
         }
     }
