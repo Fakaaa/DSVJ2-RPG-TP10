@@ -122,6 +122,7 @@ namespace EnemyAIFSMScript
                 enemyData.characterAlive = false;
 
                 Debug.Log("Murio");
+                GameManager.Get().RemoveEnemyToList(gameObject);
                 Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
                 Destroy(gameObject);
             }
@@ -137,11 +138,6 @@ namespace EnemyAIFSMScript
                 attacked = true;
                 ReceiveDamage(5);
             }
-        }
-
-        private void OnDestroy()
-        {
-            GameManager.Get().RemoveEnemyToList(gameObject);
         }
     }
 }
