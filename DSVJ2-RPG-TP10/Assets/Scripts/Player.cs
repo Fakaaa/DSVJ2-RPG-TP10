@@ -149,7 +149,7 @@ namespace PlayerScript
         void Jump()
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isOnAir)
-                playerVelocity.y = Mathf.Sqrt(jumpPower * -3.0f * gravityValue);
+                playerVelocity.y = Mathf.Sqrt(jumpPower * -3.0f * gravityValue);    //En deshuso (No animaciones , muchos bugs con el enemigo.)
 
             ApplyGravity();
         }
@@ -183,7 +183,8 @@ namespace PlayerScript
 
                 playerMovement.Move(movementVec * playerData.characterSpeed * Time.deltaTime);
 
-                Jump();
+                //Jump();
+                ApplyGravity();
             }
         }
         private void OnTriggerEnter(Collider other)
