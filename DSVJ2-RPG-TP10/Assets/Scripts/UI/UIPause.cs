@@ -10,7 +10,7 @@ namespace UIPauseScript
     {     
         public void LoadMenuScene()
         {
-            LoaderManager.Get().LoadScene("Game");   // Aca iria "MainMenu"
+            LoaderManager.Get().LoadScene("MainMenu");  
             UILoadingScreen.Get().SetVisible(true);
             gameObject.SetActive(false);
         }
