@@ -318,6 +318,16 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  itemPrefab: {fileID: 0}
+  container: {fileID: 0}
+  collideMelee: {fileID: 0}
+  state: 0
+  speed: 5
+  targetDistance: 10
+  distanceToStop: 1
+  distanceToRestart: 5
+  timeStopped: 1
+  target: {fileID: 0}
 --- !u!54 &21464476
 Rigidbody:
   m_ObjectHideFlags: 0
