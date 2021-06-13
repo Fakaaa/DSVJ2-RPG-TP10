@@ -74,6 +74,15 @@ namespace EnemyAIFSMScript
                     }
                     break;
                 case EnemyState.Attacking:
+
+                    if (Vector3.Distance(transform.position, target.transform.position) > distanceToStop)
+                    {
+                        state = EnemyState.GoingToTarget;
+                        collideMelee.SetActive(false);
+                    }
+                    else
+                        Attack();
+
                     if (attacked)
                     {
                         NextState();
@@ -132,9 +141,6 @@ namespace EnemyAIFSMScript
         {
             if (other.transform.CompareTag("MeleeAttackPlayer"))
             {
-                if (myBody != null)
-                    myBody.AddExplosionForce(3, other.transform.position, 4, 2, ForceMode.Impulse);
-
                 attacked = true;
                 ReceiveDamage(5);
             }
