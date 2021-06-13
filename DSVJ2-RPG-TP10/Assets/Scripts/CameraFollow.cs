@@ -14,9 +14,13 @@ namespace CameraFollowScript
 
         private Vector3 posToMoveTowards;
 
+        private float timerUntilDeactiveLookAt; 
+        private float time; 
+
         private void Awake()
         {
-            lookAtPlayer = false;
+            timerUntilDeactiveLookAt = 1;
+            lookAtPlayer = true;
         }
         public void LookAtPlayer()
         {
@@ -28,6 +32,11 @@ namespace CameraFollowScript
         }
         public void FocusToTargetAndMove()
         {
+            time += Time.deltaTime;
+
+            if (time >= timerUntilDeactiveLookAt)
+                lookAtPlayer = false;
+
             Vector3 myPos = transform.position;
 
             zoom = new Vector3(0, zoomUp, -zoomDistance);
