@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MonoBehaviourSingletonScript;
-using EnemyAIFSMScript;
 
 namespace GameManagerScript
 {
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         [SerializeField] private List<GameObject> enemysAlive = new List<GameObject>();
+        public bool winner = false;
+
+        [Header("Result screen data")]
+        public Canvas resultScreen;
 
         public void AddEnemyToList(GameObject enemy)
         {
@@ -24,13 +27,15 @@ namespace GameManagerScript
         public void CheckConditionToWin()
         {
             if (enemysAlive.Count == 0)
+            {
+                winner = true;
                 GameIsOver();
+            }
         }
 
         public void GameIsOver()
         {
-            // Cambiar a la escena de resultado
-            Debug.Log("Juego terminado");
+            resultScreen.gameObject.SetActive(true);
         }
     }
 }
