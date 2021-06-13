@@ -113,7 +113,6 @@ MonoBehaviour:
   movementVec: {x: 0, y: 0, z: 0}
   playerVelocity: {x: 0, y: -400.58142, z: 0}
   rotateSpeed: 2
-  isGrounded: 0
   jumpPower: 1.5
   isOnAir: 0
   playerData:
@@ -127,7 +126,11 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  speedMultiplerWhenRun: 0
   collideMelee: {fileID: 673836601375564358}
+  rangeRangedAttack: 0
+  itemsOnInventory: []
+  myItemController: {fileID: 582971201276668176}
 --- !u!1 &2637319915024490757
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +143,7 @@ GameObject:
   - component: {fileID: 3778868201643778585}
   - component: {fileID: 582971201276668176}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ItemCollector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
