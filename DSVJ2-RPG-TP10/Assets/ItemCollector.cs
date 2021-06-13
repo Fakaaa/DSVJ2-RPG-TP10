@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 
-public class ItemCollector : MonoBehaviour
+namespace ItemCollectorScript
 {
-    //En vez de devolver gameObject devolveria un Item(ScrpitableObject)
-    private GameObject itemPickedUp;
+    public class ItemCollector : MonoBehaviour
+    {
+        //En vez de devolver gameObject devolveria un Item(ScrpitableObject)
+        private GameObject itemPickedUp;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Item"))
+        private void OnTriggerEnter(Collider other)
         {
-            itemPickedUp = other.gameObject;
+            if (other.CompareTag("Item"))
+            {
+                itemPickedUp = other.gameObject;
+            }
         }
-    }
-    public bool ItemPicked()
-    {
-        if (itemPickedUp != null)
-            return true;
-        else
-            return false;
-    }
-    public GameObject ReturnItemToPlayer()
-    {
-        return itemPickedUp;
+        public bool ItemPicked()
+        {
+            if (itemPickedUp != null)
+                return true;
+            else
+                return false;
+        }
+        public GameObject ReturnItemToPlayer()
+        {
+            return itemPickedUp;
+        }
     }
 }

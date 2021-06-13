@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using ItemCollectorScript;
 
 namespace PlayerScript
 {
@@ -165,13 +166,11 @@ namespace PlayerScript
                 Jump();
             }
         }
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.CompareTag("MeleeAttackPlayer"))
-            {             
+            if (other.transform.CompareTag("MeleeAttackEnemy"))
+            {
                 ReceiveDamage(5);
-                Debug.Log("Player");
             }
         }
     }
