@@ -151,7 +151,7 @@ namespace Inventory
                     case PlayerPart.Helmet:
                         playerMesh[index].GetComponent<SkinnedMeshRenderer>().sharedMesh = new Mesh();
                         playerMesh[index].SetActive(false);
-                        hairMesh.SetActive(true);
+                        hairMesh.SetActive(false);
 
                         break;
                     case PlayerPart.Shoulders:
