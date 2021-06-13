@@ -17,6 +17,7 @@ namespace PlayerScript
         [SerializeField] private bool isOnAir;
 
         [SerializeField] public CharacterData playerData;
+        [SerializeField] private float speedMultiplerWhenRun;
 
         [SerializeField] private GameObject collideMelee;
         [SerializeField] private float rangeRangedAttack;
@@ -25,8 +26,12 @@ namespace PlayerScript
         [SerializeField] private List<GameObject> itemsOnInventory;
         [SerializeField] private ItemCollector myItemController;
 
+        private float originalSpeed;
+        private float maxSpeedRunning;
         private void Start()
         {
+            originalSpeed = playerData.characterSpeed;
+            maxSpeedRunning = originalSpeed + speedMultiplerWhenRun;
             playerData.attackReady = true;
             playerData.characterAlive = true;
             isOnAir = false;
@@ -152,6 +157,21 @@ namespace PlayerScript
         {
             if (playerData.attackReady)
             {
+                if(Input.GetKey(KeyCode.LeftShift)) //Run
+                {
+                    if(playerData.characterSpeed < maxSpeedRunning)
+                        playerData.characterSpeed += speedMultiplerWhenRun * Time.deltaTime;
+                    else
+                        playerData.characterSpeed = maxSpeedRunning;
+                }
+                else
+                {
+                    if (playerData.characterSpeed > originalSpeed)
+                        playerData.characterSpeed -= speedMultiplerWhenRun * Time.deltaTime;
+                    else
+                        playerData.characterSpeed = originalSpeed;
+                }
+
                 float horizontal = Input.GetAxis("Horizontal");
                 float vertical = Input.GetAxis("Vertical");
 
