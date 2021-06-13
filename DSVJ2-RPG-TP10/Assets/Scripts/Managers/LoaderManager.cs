@@ -13,15 +13,12 @@ namespace LoaderManagerScript
         public float timeLoading;
         public float minTimeToLoad = 2;
 
-        //public void LoadScene(string sceneName)
-        //{
-        //    SceneManager.LoadScene(sceneName);
-        //}
-
         public void LoadScene(string sceneName)
         {
-            if (fakeLoad) StartCoroutine(AsynchronousLoadWithFake(sceneName));
-            else StartCoroutine(AsynchronousLoad(sceneName));
+            if (fakeLoad) 
+                StartCoroutine(AsynchronousLoadWithFake(sceneName));
+            else 
+                StartCoroutine(AsynchronousLoad(sceneName));
         }
 
         IEnumerator AsynchronousLoad(string scene)
@@ -37,6 +34,7 @@ namespace LoaderManagerScript
             {
                 loadingProgress = ao.progress + 0.1f;
 
+                // Se completo la carga
                 if (ao.progress >= 0.9f)
                     ao.allowSceneActivation = true;
 
@@ -60,6 +58,7 @@ namespace LoaderManagerScript
                 loadingProgress = ao.progress + 0.1f;
                 loadingProgress = loadingProgress * timeLoading / minTimeToLoad;
 
+                // Se completo la carga
                 if (loadingProgress >= 1)
                     ao.allowSceneActivation = true;
 

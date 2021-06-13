@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using MonoBehaviourSingletonScript;
 using LoaderManagerScript;
+using TMPro;
 
 namespace UILoadingScreenScript
 {
     public class UILoadingScreen : MonoBehaviourSingleton<UILoadingScreen>
     {
-        public Text loadingText;
+        public TMP_Text loadingText;
 
         public override void Awake()
         {
@@ -25,7 +26,7 @@ namespace UILoadingScreenScript
         public void Update()
         {
             int loadingVal = (int)(LoaderManager.Get().loadingProgress * 100);
-            loadingText.text = "Loading: " + loadingVal;
+            loadingText.text = loadingVal + "%";
 
             if (LoaderManager.Get().loadingProgress >= 1)
                 SetVisible(false);

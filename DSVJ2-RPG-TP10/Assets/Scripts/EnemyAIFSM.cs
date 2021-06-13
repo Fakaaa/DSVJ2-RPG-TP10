@@ -33,15 +33,11 @@ namespace EnemyAIFSMScript
         public Transform target;
         private float time;
 
-        private void Awake()
-        {
-            GameManager.Get().AddEnemyToList(gameObject);
-        }
-
         private void Start()
         {
             myBody = gameObject.GetComponent<Rigidbody>();
             enemyData.characterAlive = true;
+            GameManager.Get().AddEnemyToList(gameObject);
         }
 
         private void Update()
@@ -130,7 +126,6 @@ namespace EnemyAIFSMScript
                 enemyData.characterHp = 0;
                 enemyData.characterAlive = false;
 
-                Debug.Log("Murio");
                 GameManager.Get().RemoveEnemyToList(gameObject);
                 Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
                 Destroy(gameObject);
