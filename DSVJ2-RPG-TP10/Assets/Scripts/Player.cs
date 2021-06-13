@@ -95,10 +95,11 @@ namespace PlayerScript
 
                             if (!hitInfo.collider.CompareTag("Player"))
                             {
-                                Debug.Log("Golpeo Algo");
-                                Rigidbody bodyEnemy = hitInfo.collider.GetComponent<Rigidbody>();
-                                if (bodyEnemy != null)
-                                    bodyEnemy.AddExplosionForce(5, hitInfo.point, 3, 2, ForceMode.Impulse);
+                                EnemyAIFSMScript.EnemyAIFSM enemyHited = hitInfo.collider.gameObject.GetComponent<EnemyAIFSMScript.EnemyAIFSM>();
+                                if(enemyHited != null && playerData.attackReady)
+                                {
+                                    enemyHited.ReceiveDamage(playerData.characterDamage);
+                                }
                             }
                         }
                         break;

@@ -124,11 +124,11 @@ MonoBehaviour:
     actualAttackType: 0
     rangeAttack: 0.7
     coldownAttack: 0
-    resetColdown: 0
+    resetColdown: 0.8
     attackReady: 0
   speedMultiplerWhenRun: 0
   collideMelee: {fileID: 673836601375564358}
-  rangeRangedAttack: 0
+  rangeRangedAttack: 20
   itemsOnInventory: []
   myItemController: {fileID: 582971201276668176}
 --- !u!1 &2637319915024490757

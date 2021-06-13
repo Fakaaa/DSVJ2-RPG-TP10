@@ -35,7 +35,6 @@ namespace EnemyAIFSMScript
 
         private void Start()
         {
-            GameManager.Get().AddEnemyToList(gameObject);
             myBody = gameObject.GetComponent<Rigidbody>();
             enemyData.characterAlive = true;
             GameManager.Get().AddEnemyToList(gameObject);
