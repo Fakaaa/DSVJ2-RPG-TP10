@@ -33,13 +33,9 @@ namespace EnemyAIFSMScript
         public Transform target;
         private float time;
 
-        private void Awake()
-        {
-            GameManager.Get().AddEnemyToList(gameObject);
-        }
-
         private void Start()
         {
+            GameManager.Get().AddEnemyToList(gameObject);
             myBody = gameObject.GetComponent<Rigidbody>();
             enemyData.characterAlive = true;
         }
