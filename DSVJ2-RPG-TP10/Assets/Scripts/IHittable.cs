@@ -1,4 +1,4 @@
 ﻿public interface IHittable<T>
 {
-    void ReciveDamage(T damageTaken);
+    void ReceiveDamage(T damageTaken);
 }

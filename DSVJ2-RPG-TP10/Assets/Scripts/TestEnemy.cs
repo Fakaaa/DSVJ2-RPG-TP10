@@ -17,7 +17,7 @@ namespace TestEnemyScript
             //Attack
         }
 
-        public void ReciveDamage(int damageTaken)
+        public void ReceiveDamage(int damageTaken)
         {
             enemyData.characterHp -= damageTaken;
 
@@ -34,7 +34,7 @@ namespace TestEnemyScript
             {
                 if (myBody != null)
                     myBody.AddExplosionForce(3, collision.transform.position, 4, 2, ForceMode.Impulse);
-                ReciveDamage(5);
+                ReceiveDamage(5);
                 Debug.Log("Entro?");
             }
         }

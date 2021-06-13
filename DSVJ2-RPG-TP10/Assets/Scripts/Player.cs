@@ -102,7 +102,7 @@ namespace PlayerScript
             else
                 Debug.DrawRay(rayMouseCamera.origin, rayMouseCamera.direction * rangeRangedAttack, Color.white);
         }
-        public void ReciveDamage(int damageTaken)
+        public void ReceiveDamage(int damageTaken)
         {
             if (playerData.characterDefense > 0)
                 playerData.characterDefense -= damageTaken;
@@ -163,6 +163,13 @@ namespace PlayerScript
                 playerMovement.Move(movementVec * playerData.characterSpeed * Time.deltaTime);
 
                 Jump();
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.CompareTag("MeleeAttackEnemy"))
+            {
+                ReceiveDamage(5);
             }
         }
     }
