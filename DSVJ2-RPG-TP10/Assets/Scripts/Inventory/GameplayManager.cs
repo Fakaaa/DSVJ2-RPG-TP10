@@ -28,10 +28,10 @@ namespace Inventory
                 Destroy(gameObject);
             }
         }
-
         void Start()
         {
             LoadJson();
+            PlayerInventory.OnRefreshMeshAsStatic?.Invoke();
         }
         public int GetRandomItemID() //get the id from a random item template (get a random id)
         {
