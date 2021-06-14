@@ -53,6 +53,7 @@ namespace EnemyAIFSMScript
                         if (Vector3.Distance(target.transform.position, transform.position) < targetDistance)
                             NextState();
                     }
+                    enemyAnimator.UpdateSpeed(0);
                     break;
                 case EnemyState.GoingToTarget:
                     Vector3 dir = new Vector3(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y, target.transform.position.z - transform.position.z);
@@ -60,6 +61,7 @@ namespace EnemyAIFSMScript
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir.normalized), 1);
 
                     enemyAnimator.UpdateSpeed(dir.normalized.sqrMagnitude * speed);
+                    Debug.Log("Speed animation enemy" + (dir.normalized.sqrMagnitude * speed).ToString());
                     // Si el player se escapa, el enemigo vuelve a su comportamiento erratico
                     if (Vector3.Distance(target.transform.position, transform.position) > targetDistance)
                         state = EnemyState.Idle;

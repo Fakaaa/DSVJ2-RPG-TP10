@@ -56,16 +56,15 @@ namespace Inventory
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 if (!inventoryUI.activeSelf)
-                {
                     inventoryUI.SetActive(true);
-                    Time.timeScale = 0;
-                }
                 else
-                {
                     inventoryUI.SetActive(false);
-                    Time.timeScale = originalTimeScale;
-                }
             }
+
+            if (inventoryUI.activeSelf)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = originalTimeScale;
         }
 
         void OnDestroy()
@@ -125,6 +124,7 @@ namespace Inventory
         {
             if (inventoryUI.activeSelf)
             {
+                Time.timeScale = 0;
                 for (int i = 0; i < playerUIMesh.Length; i++)
                 {
                     if (i < 5)
