@@ -1,34 +1,44 @@
 ﻿using System;
 using UnityEngine;
 using MonoBehaviourSingletonScript;
-public class AudioManager : MonoBehaviourSingleton<AudioManager>
+
+namespace AudioManagerScript
 {
-    public Sound[] sounds;
-    void Start()
+    public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {
-        foreach (Sound s in sounds)
+        public Sound[] sounds;
+        void Start()
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            foreach (Sound s in sounds)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
-            s.source.pitch = s.picth;
-            s.source.loop = s.loop;
+                s.source.volume = s.volume;
+                s.source.pitch = s.picth;
+                s.source.loop = s.loop;
+            }
         }
-    }
 
-    public void Play(string name)
-    {
-       Sound s= Array.Find(sounds, sound => sound.name == name);
+        public void Play(string name)
+        {
+            Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        if (s != null)
-            s.source.Play();
-    }
-    public void Stop(string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s != null)
+            {
+                if (!s.source.isPlaying)
+                    s.source.Play();
+            }
+        }
+        public void Stop(string name)
+        {
+            Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        if (s != null)
-            s.source.Stop();
+            if (s != null)
+            {
+                if (s.source.isPlaying)
+                    s.source.Stop();
+            }
+        }
     }
 }

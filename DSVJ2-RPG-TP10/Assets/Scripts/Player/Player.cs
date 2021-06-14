@@ -3,6 +3,7 @@ using UnityEngine;
 using ItemCollectorScript;
 using Inventory;
 using GameManagerScript;
+using AudioManagerScript;
 
 namespace PlayerScript
 {
@@ -109,9 +110,13 @@ namespace PlayerScript
                     case CharacterData.AttackType.Melee:
                         collideMelee.SetActive(true);
                         playerAnimator.PlayMeleeAttack();
+                        if (AudioManager.Get() != null)
+                            AudioManager.Get().Play("Sword");
                         break;
                     case CharacterData.AttackType.Ranged:
                         playerAnimator.PlayRangedAttack();
+                        if (AudioManager.Get() != null)
+                            AudioManager.Get().Play("Arrow");
                         RaycastHit hitInfo;
                         Debug.DrawRay(rayMouseCamera.origin, rayMouseCamera.direction * rangeRangedAttack, Color.red);
                         if (Physics.Raycast(rayMouseCamera, out hitInfo, rangeRangedAttack))
@@ -191,7 +196,13 @@ namespace PlayerScript
             {
                 if(Input.GetKey(KeyCode.LeftShift)) //Run
                 {
-                    if(playerData.characterSpeed < maxSpeedRunning)
+                    if (AudioManager.Get() != null)
+                    {
+                        AudioManager.Get().Stop("Walk");
+                        AudioManager.Get().Play("Run");
+                    }
+
+                        if (playerData.characterSpeed < maxSpeedRunning)
                         playerData.characterSpeed += speedMultiplerWhenRun * Time.deltaTime;
                     else
                         playerData.characterSpeed = maxSpeedRunning;
@@ -201,7 +212,15 @@ namespace PlayerScript
                     if (playerData.characterSpeed > originalSpeed)
                         playerData.characterSpeed -= speedMultiplerWhenRun * Time.deltaTime;
                     else
+                    {
                         playerData.characterSpeed = originalSpeed;
+
+                        if (AudioManager.Get() != null && movementVec != Vector3.zero)
+                        {
+                            AudioManager.Get().Play("Walk");
+                            AudioManager.Get().Stop("Run");
+                        }
+                    }
                 }
 
                 float horizontal = Input.GetAxis("Horizontal");
@@ -224,6 +243,9 @@ namespace PlayerScript
         {
             if (other.transform.CompareTag("MeleeAttackEnemy"))
             {
+                if (AudioManager.Get() != null)
+                    AudioManager.Get().Play("Pushed");
+
                 ReceiveDamage(5);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using LoaderManagerScript;
 using UILoadingScreenScript;
+using AudioManagerScript;
 
 namespace UIMainMenuScript
 {
