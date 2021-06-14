@@ -707,8 +707,8 @@ MonoBehaviour:
   playerMovement: {fileID: 2415616700771126047}
   movementVec: {x: 0, y: 0, z: 0}
   playerVelocity: {x: 0, y: -400.58142, z: 0}
-  rotateSpeed: 2
-  jumpPower: 1.5
+  rotateSpeed: 0.2
+  jumpPower: 0
   isOnAir: 0
   playerData:
     characterHp: 100
