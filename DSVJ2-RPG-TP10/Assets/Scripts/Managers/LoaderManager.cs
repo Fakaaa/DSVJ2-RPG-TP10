@@ -15,9 +15,9 @@ namespace LoaderManagerScript
 
         public void LoadScene(string sceneName)
         {
-            if (fakeLoad) 
+            if (fakeLoad)
                 StartCoroutine(AsynchronousLoadWithFake(sceneName));
-            else 
+            else
                 StartCoroutine(AsynchronousLoad(sceneName));
         }
 
@@ -63,6 +63,25 @@ namespace LoaderManagerScript
                     ao.allowSceneActivation = true;
 
                 yield return null;
+            }
+            if (AudioManager.Get() != null)
+            {
+                switch (scene)
+                {
+                    case "MainMenu":
+                        AudioManager.Get().Play("MainMenuSong");
+                        AudioManager.Get().Stop("CreditsSong");
+                        AudioManager.Get().Stop("GameSong");
+                        break;
+                    case "Credits":
+                        AudioManager.Get().Play("CreditsSong");
+                        AudioManager.Get().Stop("MainMenuSong");
+                        break;
+                    case "Game":
+                        AudioManager.Get().Play("GameSong");
+                        AudioManager.Get().Stop("MainMenuSong");
+                        break;
+                }
             }
         }
     }

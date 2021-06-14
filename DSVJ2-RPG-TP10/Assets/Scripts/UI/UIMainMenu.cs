@@ -6,6 +6,11 @@ namespace UIMainMenuScript
 {
     public class UIMainMenu : MonoBehaviour
     {
+        private void Start()
+        {
+            if (AudioManager.Get() != null)
+                AudioManager.Get().Play("MainMenuSong");
+        }
         public void LoadGameScene()
         {
             LoaderManager.Get().LoadScene("Game"); 

@@ -162,6 +162,9 @@ namespace Inventory
             player.playerData.actualAttackType = newTypeAttack;
             player.playerData.characterDefense = totalDefenseValue;
             player.playerData.characterDamage = totalAttackValue;
+
+            if (player.playerData.actualAttackType == CharacterData.AttackType.Ranged)
+                player.PassDamageToArrow();
         }
 
         private CharacterData.AttackType CheckTypeAttack(int slotWeapon)
