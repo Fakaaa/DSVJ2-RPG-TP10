@@ -126,7 +126,8 @@ namespace PlayerScript
             {
                 playerData.characterHp = 0;
                 playerData.characterAlive = false;
-                //End game
+                if (GameManagerScript.GameManager.Get() != null)
+                    GameManagerScript.GameManager.Get().GameIsOver();
             }
         }
         void CheckIfIsOnGround()
