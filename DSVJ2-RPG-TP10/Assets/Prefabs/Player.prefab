@@ -698,7 +698,7 @@ MonoBehaviour:
   isOnAir: 0
   playerData:
     characterHp: 100
-    characterDefense: 50
+    characterDefense: 0
     characterDamage: 10
     characterSpeed: 3
     characterAlive: 1
@@ -2829,6 +2829,14 @@ MonoBehaviour:
   - {fileID: 6145510093271566770}
   - {fileID: 5935736091583617682}
   - {fileID: 1599959371331705402}
+  playerUIMesh:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hairMesh: {fileID: 8102879838956833783}
   playerDefaultMesh:
     armor: {fileID: -4917768361460942333, guid: b60f708b43fd671458659ed7aaba349c,
@@ -2837,6 +2845,7 @@ MonoBehaviour:
       type: 3}
     boots: {fileID: 6044559441606390166, guid: 114110abb082040459c9d697a14ae903, type: 3}
   inventoryUI: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1599959372363875380
 MonoBehaviour:
   m_ObjectHideFlags: 0

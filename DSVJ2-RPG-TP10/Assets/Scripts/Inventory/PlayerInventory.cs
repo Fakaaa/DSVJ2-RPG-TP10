@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ItemSO;
+using PlayerScript;
 
 namespace Inventory
 {
@@ -20,6 +21,7 @@ namespace Inventory
         [SerializeField] private GameObject hairMesh;
         [SerializeField] private PlayerMesh playerDefaultMesh;
         [SerializeField] private GameObject inventoryUI;
+        [SerializeField] private Player player;
 
         Equipment equipment;
         Inventory inventory;
@@ -137,8 +139,39 @@ namespace Inventory
                     }
                     playerUIMesh[i].transform.localPosition = playerMesh[i].transform.localPosition;
                     playerUIMesh[i].transform.localEulerAngles = playerMesh[i].transform.localEulerAngles;
-                }
+                }               
             }
+
+            // Calculated defense
+            int totalDefenseValue = 0;
+            totalDefenseValue += CheckDefenseValue(4);   // Helmet
+            totalDefenseValue += CheckDefenseValue(5);   // Gloves
+            totalDefenseValue += CheckDefenseValue(6);   // Boots
+            totalDefenseValue += CheckDefenseValue(7);   // Shoulders
+            totalDefenseValue += CheckDefenseValue(8);   // Armor
+            player.playerData.characterDefense = totalDefenseValue;
+        }
+
+        private int CheckDefenseValue(int index)
+        {
+            if (equipment.GetSlot(index).ID != -1)
+            {
+                if (GameplayManager.GetInstance() != null)
+                {
+                    Item item = GameplayManager.GetInstance().GetItemFromID(equipment.GetSlot(index).ID);
+
+                    if (item != null)
+                    {
+                        if (item is Outfit)
+                        {
+                            Outfit _item = (Outfit)item;
+                            return _item.defense;
+                        }
+                    }
+                }
+            }   
+
+            return 0;
         }
 
         public void SetMesh(int index, int id, PlayerPart part)
