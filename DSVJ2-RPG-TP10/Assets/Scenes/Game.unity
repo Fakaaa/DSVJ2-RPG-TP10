@@ -6257,6 +6257,18 @@ Transform:
   m_Father: {fileID: 119376564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &543922387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 582971201276668176, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5153623865497888770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11cb3d9f531c354ab3389a16b43473a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &552546271
 GameObject:
   m_ObjectHideFlags: 0
@@ -21176,8 +21188,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
+      propertyPath: itemsInventory
+      value: 
+      objectReference: {fileID: 4013213066188287871}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: myItemCollector
+      value: 
+      objectReference: {fileID: 543922387}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: playerEquipment
+      value: 
+      objectReference: {fileID: 4013213066188287870}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
       propertyPath: playerData.characterDamage
-      value: 10000
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
