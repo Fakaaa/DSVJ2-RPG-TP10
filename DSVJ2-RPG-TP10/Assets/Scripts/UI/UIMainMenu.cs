@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using LoaderManagerScript;
 using UILoadingScreenScript;
 
@@ -12,6 +10,7 @@ namespace UIMainMenuScript
         {
             LoaderManager.Get().LoadScene("Game"); 
             UILoadingScreen.Get().SetVisible(true);
+            gameObject.SetActive(false);
         }
 
         public void LoadCreditsScene()
