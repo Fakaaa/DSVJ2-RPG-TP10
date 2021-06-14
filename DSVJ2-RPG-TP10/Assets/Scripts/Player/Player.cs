@@ -2,6 +2,7 @@
 using UnityEngine;
 using ItemCollectorScript;
 using Inventory;
+using GameManagerScript;
 
 namespace PlayerScript
 {
@@ -41,6 +42,8 @@ namespace PlayerScript
             isOnAir = false;
             gravityValue = -9.8f;
             playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
+            if(GameManager.Get() != null)
+                GameManager.Get().InitializeResultScreen();
         }
         void Update()
         {
