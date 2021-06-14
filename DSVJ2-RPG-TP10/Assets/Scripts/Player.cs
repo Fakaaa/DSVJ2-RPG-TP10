@@ -12,11 +12,12 @@ namespace PlayerScript
         [SerializeField] private float rotateSpeed;
 
         private float gravityValue;
-
+        
         [SerializeField] private float jumpPower;
         [SerializeField] private bool isOnAir;
 
         [SerializeField] public CharacterData playerData;
+        [SerializeField] public CharacterAnimator playerAnimator;
         [SerializeField] private float speedMultiplerWhenRun;
 
         [SerializeField] private GameObject collideMelee;
@@ -36,6 +37,7 @@ namespace PlayerScript
             playerData.characterAlive = true;
             isOnAir = false;
             gravityValue = -9.8f;
+            playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
         }
         void Update()
         {
@@ -80,9 +82,10 @@ namespace PlayerScript
                 {
                     case CharacterData.AttackType.Melee:
                         collideMelee.SetActive(true);
+                        playerAnimator.PlayMeleeAttack();
                         break;
                     case CharacterData.AttackType.Ranged:
-
+                        playerAnimator.PlayRangedAttack();
                         RaycastHit hitInfo;
                         Debug.DrawRay(rayMouseCamera.origin, rayMouseCamera.direction * rangeRangedAttack, Color.red);
                         if (Physics.Raycast(rayMouseCamera, out hitInfo, rangeRangedAttack))
@@ -177,6 +180,7 @@ namespace PlayerScript
                 float vertical = Input.GetAxis("Vertical");
 
                 movementVec = new Vector3(horizontal, movementVec.y, vertical);
+                playerAnimator.UpdateSpeed(movementVec.sqrMagnitude * (playerData.characterSpeed / originalSpeed)); //ANIMATION
                 Vector3 movementRotated = Quaternion.AngleAxis(0, Vector3.up) * movementVec;
 
                 if (movementVec != Vector3.zero)
