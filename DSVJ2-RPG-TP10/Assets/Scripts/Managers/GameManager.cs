@@ -35,6 +35,7 @@ namespace GameManagerScript
 
         public void GameIsOver()
         {
+            enemysAlive.Clear();
             resultScreen.gameObject.SetActive(true);
         }
     }
