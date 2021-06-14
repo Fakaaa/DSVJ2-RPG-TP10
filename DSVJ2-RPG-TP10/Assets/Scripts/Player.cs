@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ItemCollectorScript;
+using Inventory;
 
 namespace PlayerScript
 {
@@ -24,6 +25,8 @@ namespace PlayerScript
         [SerializeField] private float rangeRangedAttack;
 
         //Provisorio------------------------
+        [SerializeField] private PlayerInventory itemsInventory;
+        [SerializeField] private Equipment playerEquipment;
         [SerializeField] private List<GameObject> itemsOnInventory;
         [SerializeField] private ItemCollector myItemController;
 
@@ -57,6 +60,7 @@ namespace PlayerScript
 
             if (myItemController.ItemPicked())
             {
+                
                 if (!itemsOnInventory.Contains(myItemController.ReturnItemToPlayer()))
                     itemsOnInventory.Add(myItemController.ReturnItemToPlayer());
             }
@@ -127,7 +131,10 @@ namespace PlayerScript
                 playerData.characterHp = 0;
                 playerData.characterAlive = false;
                 if (GameManagerScript.GameManager.Get() != null)
+                {
+
                     GameManagerScript.GameManager.Get().GameIsOver();
+                }
             }
         }
         void CheckIfIsOnGround()

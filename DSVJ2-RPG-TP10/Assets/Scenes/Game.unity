@@ -5889,6 +5889,18 @@ Transform:
   m_Father: {fileID: 110630149}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952950608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 929723815492588868, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5153623865497888770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2453ad697823b604190c3087b22f639f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1959889689
 GameObject:
   m_ObjectHideFlags: 0
@@ -11555,6 +11567,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: itemsInventory
+      value: 
+      objectReference: {fileID: 1952950608}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: playerEquipment
+      value: 
+      objectReference: {fileID: 4013213066188287870}
     - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
       propertyPath: playerData.actualAttackType
