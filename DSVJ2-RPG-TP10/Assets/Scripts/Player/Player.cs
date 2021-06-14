@@ -9,27 +9,32 @@ namespace PlayerScript
     public class Player : MonoBehaviour, IHittable<int>, IAttack
     {
         [SerializeField] private CharacterController playerMovement;
+
+        [Header("PLAYER GENERAL DATA")]
         [SerializeField] Vector3 movementVec;
         [SerializeField] Vector3 playerVelocity;
         [SerializeField] private float rotateSpeed;
-
-        private float gravityValue;
-        
         [SerializeField] private float jumpPower;
         [SerializeField] private bool isOnAir;
-
-        [SerializeField] public CharacterData playerData;
         [SerializeField] public CharacterAnimator playerAnimator;
         [SerializeField] private float speedMultiplerWhenRun;
+        [Space(50)]
+        private float gravityValue;
 
+        [Header("PLAYER SPECIFIC DATA")]
+        [SerializeField] public CharacterData playerData;
         [SerializeField] private GameObject collideMelee;
+        [SerializeField] private GameObject arrowModelPrefab;
         [SerializeField] private float rangeRangedAttack;
-
+        [Header("PLAYER INVENTORY")]
         [SerializeField] private Inventory.Inventory itemsInventory;
         [SerializeField] private Equipment playerEquipment;
         [SerializeField] private ItemCollector myItemCollector;
+        private GameObject arrow;
+        private Vector3 posToReach;
 
         //Provisorio------------------------
+        [Header("TEMPORAL")]
         [SerializeField] private List<GameObject> itemsOnInventory;
 
         private float originalSpeed;
@@ -45,6 +50,15 @@ namespace PlayerScript
             playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
             if(GameManager.Get() != null)
                 GameManager.Get().InitializeResultScreen();
+
+            RangedAttack.damageArrow += PassDamageToArrow;
+
+            if (playerData.actualAttackType == CharacterData.AttackType.Ranged)
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+        private void OnDisable()
+        {
+            RangedAttack.damageArrow -= PassDamageToArrow;
         }
         void Update()
         {
@@ -52,6 +66,11 @@ namespace PlayerScript
             CheckIfIsOnGround();
             PlayerTakeItem();
             Attack();
+        }
+
+        public int PassDamageToArrow()
+        {
+           return playerData.characterDamage;
         }
         public void PlayerTakeItem()
         {
@@ -64,7 +83,6 @@ namespace PlayerScript
 
             if (myItemCollector.ItemPicked())
             {
-
                 if (!itemsOnInventory.Contains(myItemCollector.ReturnItemToPlayer()))
                     itemsOnInventory.Add(myItemCollector.ReturnItemToPlayer());
             }
@@ -101,17 +119,12 @@ namespace PlayerScript
                             //Direccion flecha
                             Ray arrowDirection;
                             arrowDirection = new Ray(transform.position + Vector3.up, hitInfo.point - (transform.position + Vector3.up));
+                            posToReach = hitInfo.point;
                             Debug.DrawRay(arrowDirection.origin, arrowDirection.direction * rangeRangedAttack, Color.magenta);
-                            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(arrowDirection.direction.normalized), rotateSpeed);
+                            arrow = Instantiate(arrowModelPrefab, arrowDirection.origin, Quaternion.identity);
 
-                            if (!hitInfo.collider.CompareTag("Player"))
-                            {
-                                EnemyAIFSMScript.EnemyAIFSM enemyHited = hitInfo.collider.gameObject.GetComponent<EnemyAIFSMScript.EnemyAIFSM>();
-                                if(enemyHited != null && playerData.attackReady)
-                                {
-                                    enemyHited.ReceiveDamage(playerData.characterDamage);
-                                }
-                            }
+                            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(arrowDirection.direction.normalized), 1);
+                            arrow.transform.rotation = Quaternion.Slerp(arrow.transform.rotation, Quaternion.LookRotation(transform.forward), 1);
                         }
                         break;
                 }
@@ -119,6 +132,12 @@ namespace PlayerScript
             }
             else
                 Debug.DrawRay(rayMouseCamera.origin, rayMouseCamera.direction * rangeRangedAttack, Color.white);
+
+            if(arrow != null)
+            {
+                if (arrow.transform.position != posToReach)
+                    arrow.transform.position = Vector3.Lerp(arrow.transform.position, posToReach, Time.deltaTime * 2);
+            }
         }
         public void ReceiveDamage(int damageTaken)
         {

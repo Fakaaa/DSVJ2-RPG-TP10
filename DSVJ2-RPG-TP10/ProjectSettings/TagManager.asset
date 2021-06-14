@@ -9,7 +9,7 @@ TagManager:
   - MeleeAttackEnemy
   - Ground
   - Item
-  - Meteorite
+  - RangedAttackPlayer
   layers:
   - Default
   - TransparentFX

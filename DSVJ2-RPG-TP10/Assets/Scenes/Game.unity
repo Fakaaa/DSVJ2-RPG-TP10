@@ -11410,6 +11410,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114493570}
   m_Mesh: {fileID: 4300036, guid: 635180035812f964db1d9529cbb170f2, type: 3}
+--- !u!1 &1120852842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8102879838956833783, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5153623865497888770}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1122313737
 GameObject:
   m_ObjectHideFlags: 0
@@ -13396,10 +13402,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData:
-    characterHp: 100
+    characterHp: 300
     characterDefense: 20
-    characterDamage: 4
-    characterSpeed: 1
+    characterDamage: 40
+    characterSpeed: 3
     characterAlive: 1
     actualAttackType: 0
     rangeAttack: 0
@@ -21088,6 +21094,11 @@ PrefabInstance:
       objectReference: {fileID: 819041289}
     - target: {fileID: 929723815492588868, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
+      propertyPath: hairMesh
+      value: 
+      objectReference: {fileID: 1120852842}
+    - target: {fileID: 929723815492588868, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 3678044530530742035}
@@ -21201,6 +21212,17 @@ PrefabInstance:
       propertyPath: playerEquipment
       value: 
       objectReference: {fileID: 4013213066188287870}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: arrowModelPrefab
+      value: 
+      objectReference: {fileID: 4262211748424625035, guid: 45dfc4a7ef7634e479e6be522752ea5b,
+        type: 3}
+    - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: rangeRangedAttack
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2415616700771126046, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
       propertyPath: playerData.characterDamage
