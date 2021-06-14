@@ -8948,6 +8948,7 @@ MonoBehaviour:
     type: 3}
   container: {fileID: 1844334770}
   collideMelee: {fileID: 19152457}
+  terrain: {fileID: 3113321}
   state: 0
   speed: 3
   targetDistance: 10
@@ -13548,6 +13549,7 @@ MonoBehaviour:
     type: 3}
   container: {fileID: 1844334770}
   collideMelee: {fileID: 917167266}
+  terrain: {fileID: 3113321}
   state: 0
   speed: 3
   targetDistance: 10
@@ -16002,6 +16004,7 @@ MonoBehaviour:
     type: 3}
   container: {fileID: 1844334770}
   collideMelee: {fileID: 477643284}
+  terrain: {fileID: 3113321}
   state: 0
   speed: 3
   targetDistance: 10
@@ -18427,6 +18430,7 @@ MonoBehaviour:
     type: 3}
   container: {fileID: 1844334770}
   collideMelee: {fileID: 1987795067}
+  terrain: {fileID: 3113321}
   state: 0
   speed: 3
   targetDistance: 10
