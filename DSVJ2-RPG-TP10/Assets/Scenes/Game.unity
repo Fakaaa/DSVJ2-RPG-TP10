@@ -3845,7 +3845,7 @@ GameObject:
   - component: {fileID: 1255367031}
   - component: {fileID: 1255367030}
   m_Layer: 0
-  m_Name: Enemy Little (1)
+  m_Name: Enemy Little 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6872,7 +6872,7 @@ GameObject:
   - component: {fileID: 3380743353673132530}
   - component: {fileID: 1112159019674516361}
   m_Layer: 0
-  m_Name: Enemy Little
+  m_Name: Enemy Little 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
