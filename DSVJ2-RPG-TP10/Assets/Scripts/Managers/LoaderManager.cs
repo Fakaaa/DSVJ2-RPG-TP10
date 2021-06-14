@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using MonoBehaviourSingletonScript;
+using AudioManagerScript;
 
 namespace LoaderManagerScript
 {

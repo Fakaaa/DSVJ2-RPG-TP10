@@ -44,63 +44,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 0}
-    volume: 0.376
-    picth: 0
+  - clip: {fileID: 8300000, guid: 1734b499de27ca04688316670238c18c, type: 3}
+    volume: 0.3
+    picth: 1
     source: {fileID: 0}
-    name: 
-    loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+    name: GameSong
+    loop: 1
+  - clip: {fileID: 8300000, guid: b0404f4a40cbb9244b869b08865a8f73, type: 3}
+    volume: 0.3
+    picth: 1
     source: {fileID: 0}
-    name: 
-    loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+    name: CreditsSong
+    loop: 1
+  - clip: {fileID: 8300000, guid: 72c277c6c45c25942bd29ae18c346edf, type: 3}
+    volume: 0.7
+    picth: 1
     source: {fileID: 0}
-    name: 
-    loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+    name: MainMenuSong
+    loop: 1
+  - clip: {fileID: 8300000, guid: e5813e460954fe547bb2531617ebe804, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
+    name: Arrow
     loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+  - clip: {fileID: 8300000, guid: bcf9063e9810366419a5cdf96537462a, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
+    name: Meteorite
     loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+  - clip: {fileID: 8300000, guid: 44e4fedee44c3e747904b8f8c38f9383, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
+    name: Pushed
     loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+  - clip: {fileID: 8300000, guid: 2b657000539da084baef86dfdaeecf59, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
-    loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+    name: Run
+    loop: 1
+  - clip: {fileID: 8300000, guid: e3747b312fe8fec47a6babcc61e4355b, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
+    name: Sword
     loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
+  - clip: {fileID: 8300000, guid: 61c57552f8b15714c9133404ab431271, type: 3}
+    volume: 0.5
+    picth: 1
     source: {fileID: 0}
-    name: 
-    loop: 0
-  - clip: {fileID: 0}
-    volume: 0
-    picth: 0
-    source: {fileID: 0}
-    name: 
-    loop: 0
+    name: Walk
+    loop: 1
