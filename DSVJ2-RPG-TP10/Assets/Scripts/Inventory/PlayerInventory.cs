@@ -16,6 +16,7 @@ namespace Inventory
     public class PlayerInventory : MonoBehaviour
     {
         [SerializeField] private GameObject[] playerMesh = new GameObject[7];
+        [SerializeField] private GameObject[] playerUIMesh = new GameObject[7];
         [SerializeField] private GameObject hairMesh;
         [SerializeField] private PlayerMesh playerDefaultMesh;
         [SerializeField] private GameObject inventoryUI;
@@ -52,7 +53,10 @@ namespace Inventory
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                inventoryUI.SetActive(!inventoryUI.activeSelf);
+                if (!inventoryUI.activeSelf)
+                    inventoryUI.SetActive(true);
+                else
+                    inventoryUI.SetActive(false);
             }
         }
 
@@ -105,6 +109,28 @@ namespace Inventory
             SetMesh(4, equipment.GetEquipmentList()[8].ID, PlayerPart.Armor);
             SetMesh(5, equipment.GetEquipmentList()[0].ID, PlayerPart.Arms);
             SetMesh(6, equipment.GetEquipmentList()[1].ID, PlayerPart.Arms);
+
+            UpdatePlayerUI();
+        }
+
+        private void UpdatePlayerUI()
+        {
+            if (inventoryUI.activeSelf)
+            {
+                for (int i = 0; i < playerUIMesh.Length; i++)
+                {
+                    if (i < 5)
+                    {
+                        playerUIMesh[i].GetComponent<SkinnedMeshRenderer>().sharedMesh = playerMesh[i].GetComponent<SkinnedMeshRenderer>().sharedMesh;
+                    }
+                    else
+                    {
+                        playerUIMesh[i].GetComponent<MeshFilter>().mesh = playerMesh[i].GetComponent<MeshFilter>().mesh;
+                    }
+                    playerUIMesh[i].transform.localPosition = playerMesh[i].transform.localPosition;
+                    playerUIMesh[i].transform.localEulerAngles = playerMesh[i].transform.localEulerAngles;
+                }
+            }
         }
 
         public void SetMesh(int index, int id, PlayerPart part)
@@ -151,7 +177,7 @@ namespace Inventory
                     case PlayerPart.Helmet:
                         playerMesh[index].GetComponent<SkinnedMeshRenderer>().sharedMesh = new Mesh();
                         playerMesh[index].SetActive(false);
-                        hairMesh.SetActive(false);
+                        hairMesh.SetActive(true);
 
                         break;
                     case PlayerPart.Shoulders:
