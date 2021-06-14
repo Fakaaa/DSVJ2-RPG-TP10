@@ -59,7 +59,7 @@ namespace EnemyAIFSMScript
                     enemyAnimator.UpdateSpeed(0);
                     break;
                 case EnemyState.GoingToTarget:
-                    Vector3 dir = new Vector3(target.transform.position.x - transform.position.x, target.transform.position.y - terrain.SampleHeight(transform.position), target.transform.position.z - transform.position.z);
+                    Vector3 dir = new Vector3(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y, target.transform.position.z - transform.position.z);
                     transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir.normalized), 1);
 
@@ -94,8 +94,8 @@ namespace EnemyAIFSMScript
                     }
                     break;
                 case EnemyState.GoAway:
-                    Vector3 dir02 = new Vector3(transform.position.x - target.transform.position.x, terrain.SampleHeight(transform.position) - target.transform.position.y, transform.position.z - target.transform.position.z);
-                    transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);                    
+                    Vector3 dir02 = new Vector3(transform.position.x - target.transform.position.x, transform.position.y - target.transform.position.y, transform.position.z - target.transform.position.z);
+                    transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
 
                     // Cuando llego a cierto punto vuelve a su comportamiento erratico
                     if (Vector3.Distance(transform.position, target.transform.position) > distanceToRestart)
@@ -103,7 +103,6 @@ namespace EnemyAIFSMScript
                     break;
             }
         }
-
         private void NextState()
         {
             time = 0;
