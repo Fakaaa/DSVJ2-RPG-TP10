@@ -124,6 +124,7 @@ namespace EnemyAIFSMScript
 
         public void ReceiveDamage(int damageTaken)
         {
+            enemyAnimator.PlayReceiveDamage();
             enemyData.characterHp -= damageTaken;
 
             if (enemyData.characterHp <= 0)

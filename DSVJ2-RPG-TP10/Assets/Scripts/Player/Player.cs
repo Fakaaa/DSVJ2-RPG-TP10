@@ -122,10 +122,12 @@ namespace PlayerScript
         }
         public void ReceiveDamage(int damageTaken)
         {
+            playerAnimator.PlayReceiveDamage();
             if (playerData.characterDefense > 0)
                 playerData.characterDefense -= damageTaken;
             else
             {
+                playerAnimator.SetArmor(false);
                 playerData.characterDefense = 0;
                 playerData.characterHp -= damageTaken;
             }
