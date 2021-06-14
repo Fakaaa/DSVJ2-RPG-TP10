@@ -27,6 +27,7 @@ namespace Inventory
         public delegate void RefreshMesh();
         public static RefreshMesh OnRefreshMeshAsStatic;
 
+        private float originalTimeScale = 0;
         public enum PlayerPart
         {
             Helmet,
@@ -47,6 +48,7 @@ namespace Inventory
         {
             GameplayManager.GetInstance().SetPlayer(this);
             OnRefreshMeshAsStatic += UpdateMesh;
+            originalTimeScale = Time.timeScale;
         }
 
         private void Update()
@@ -54,9 +56,15 @@ namespace Inventory
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 if (!inventoryUI.activeSelf)
+                {
                     inventoryUI.SetActive(true);
+                    Time.timeScale = 0;
+                }
                 else
+                {
                     inventoryUI.SetActive(false);
+                    Time.timeScale = originalTimeScale;
+                }
             }
         }
 

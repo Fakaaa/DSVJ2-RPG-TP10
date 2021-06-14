@@ -6,7 +6,7 @@ namespace EnemyAIFSMScript
     public class EnemyAIFSM : MonoBehaviour, IHittable<int>, IAttack
     {
         [SerializeField] public CharacterData enemyData;
-        private Rigidbody myBody;
+        [SerializeField] public CharacterAnimator enemyAnimator;
 
         [Header("Test")]
         public GameObject itemPrefab;
@@ -35,9 +35,9 @@ namespace EnemyAIFSMScript
 
         private void Start()
         {
-            myBody = gameObject.GetComponent<Rigidbody>();
             enemyData.characterAlive = true;
             GameManager.Get().AddEnemyToList(gameObject);
+            enemyAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
         }
 
         private void Update()
@@ -59,6 +59,7 @@ namespace EnemyAIFSMScript
                     transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir.normalized), 1);
 
+                    enemyAnimator.UpdateSpeed(dir.normalized.sqrMagnitude * speed);
                     // Si el player se escapa, el enemigo vuelve a su comportamiento erratico
                     if (Vector3.Distance(target.transform.position, transform.position) > targetDistance)
                         state = EnemyState.Idle;
@@ -115,7 +116,7 @@ namespace EnemyAIFSMScript
         public void Attack()
         {
             collideMelee.SetActive(true);
-            // Aca se activaria la animacion
+            enemyAnimator.PlayMeleeAttack();
         }
 
         public void ReceiveDamage(int damageTaken)
