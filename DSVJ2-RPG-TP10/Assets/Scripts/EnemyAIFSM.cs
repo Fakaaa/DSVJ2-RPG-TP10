@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GameManagerScript;
+using MeteoriteScript;
 
 namespace EnemyAIFSMScript
 {
@@ -146,5 +147,21 @@ namespace EnemyAIFSMScript
                     ReceiveDamage(other.transform.GetComponent<MeleeRange>().GetDamagePlayer());
             }
         }
+
+        private void MeteoriteDamageEnemy(int damage)
+        {
+            enemyData.characterHp -= damage;
+        }
+
+        private void OnEnable()
+        {
+            Meteorite.OnCollisionEnemy += MeteoriteDamageEnemy;
+        }
+
+        private void OnDisable()
+        {
+            Meteorite.OnCollisionEnemy -= MeteoriteDamageEnemy;
+        }
+
     }
 }
