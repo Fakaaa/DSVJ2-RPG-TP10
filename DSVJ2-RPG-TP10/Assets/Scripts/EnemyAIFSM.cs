@@ -36,7 +36,8 @@ namespace EnemyAIFSMScript
         private void Start()
         {
             enemyData.characterAlive = true;
-            GameManager.Get().AddEnemyToList(gameObject);
+            if (GameManager.Get() != null)
+                GameManager.Get().AddEnemyToList(gameObject);
             enemyAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
         }
 
@@ -141,7 +142,8 @@ namespace EnemyAIFSMScript
             if (other.transform.CompareTag("MeleeAttackPlayer"))
             {
                 attacked = true;
-                ReceiveDamage(5);
+                if(other.transform.GetComponent<MeleeRange>() != null)
+                    ReceiveDamage(other.transform.GetComponent<MeleeRange>().GetDamagePlayer());
             }
         }
     }

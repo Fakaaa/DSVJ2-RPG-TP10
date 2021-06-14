@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7789321138638543582}
   - component: {fileID: 528877548392841619}
+  - component: {fileID: 6200050244209904120}
   m_Layer: 0
   m_Name: MeleeRange
   m_TagString: MeleeAttackPlayer
@@ -167,6 +168,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6200050244209904120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673836601375564358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b17af242d92af4888ddc1f9a5d3c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2415616700771126046}
 --- !u!1 &1060417967612260320
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,8 +707,8 @@ MonoBehaviour:
   playerMovement: {fileID: 2415616700771126047}
   movementVec: {x: 0, y: 0, z: 0}
   playerVelocity: {x: 0, y: -400.58142, z: 0}
-  rotateSpeed: 2
-  jumpPower: 1.5
+  rotateSpeed: 0.2
+  jumpPower: 0
   isOnAir: 0
   playerData:
     characterHp: 100
@@ -710,6 +724,8 @@ MonoBehaviour:
   speedMultiplerWhenRun: 3
   collideMelee: {fileID: 673836601375564358}
   rangeRangedAttack: 20
+  itemsInventory: {fileID: 0}
+  playerEquipment: {fileID: 0}
   itemsOnInventory: []
   myItemController: {fileID: 582971201276668176}
 --- !u!1 &2571401838216296469

@@ -139,17 +139,57 @@ namespace Inventory
                     }
                     playerUIMesh[i].transform.localPosition = playerMesh[i].transform.localPosition;
                     playerUIMesh[i].transform.localEulerAngles = playerMesh[i].transform.localEulerAngles;
-                }               
+                }
             }
 
             // Calculated defense
             int totalDefenseValue = 0;
+            int totalAttackValue = 0;
+
+            //DAMAGE
+            totalAttackValue += CheckAttackValue(0);    //Slot 1
+            totalAttackValue += CheckAttackValue(1);    //Slot 2
+            totalAttackValue += CheckAttackValue(2);    //Slot 3
+            totalAttackValue += CheckAttackValue(3);    //Slot 4
+            CharacterData.AttackType newTypeAttack = CheckTypeAttack(1);
+            //DEFENSE
             totalDefenseValue += CheckDefenseValue(4);   // Helmet
             totalDefenseValue += CheckDefenseValue(5);   // Gloves
             totalDefenseValue += CheckDefenseValue(6);   // Boots
             totalDefenseValue += CheckDefenseValue(7);   // Shoulders
             totalDefenseValue += CheckDefenseValue(8);   // Armor
+
+            player.playerData.actualAttackType = newTypeAttack;
             player.playerData.characterDefense = totalDefenseValue;
+            player.playerData.characterDamage = totalAttackValue;
+        }
+
+        private CharacterData.AttackType CheckTypeAttack(int slotWeapon)
+        {
+            if (equipment.GetSlot(slotWeapon).ID != -1)
+            {
+                Item itemToCheck = GameplayManager.GetInstance().GetItemFromID(equipment.GetSlot(slotWeapon).ID);
+                if (itemToCheck != null)
+                {
+                    if (itemToCheck.GetItemType() == ItemType.Arms)
+                    {
+                        Weapon itemWeapon = (Weapon)itemToCheck;
+                        if(itemWeapon != null)
+                        {
+                            if(itemWeapon.GetWeaponType() == WeaponType.Dagger || itemWeapon.GetWeaponType() == WeaponType.Sword
+                                || itemWeapon.GetWeaponType() == WeaponType.Spear || itemWeapon.GetWeaponType() == WeaponType.Trident)
+                            {
+                                return CharacterData.AttackType.Melee;
+                            }
+                            else
+                            {
+                                return CharacterData.AttackType.Ranged;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
         }
 
         private int CheckDefenseValue(int index)
@@ -169,11 +209,30 @@ namespace Inventory
                         }
                     }
                 }
-            }   
+            }
 
             return 0;
         }
+        private int CheckAttackValue(int index)
+        {
+            if (equipment.GetSlot(index).ID != -1)
+            {
+                if (GameplayManager.GetInstance() != null)
+                {
+                    Item item = GameplayManager.GetInstance().GetItemFromID(equipment.GetSlot(index).ID);
 
+                    if (item != null)
+                    {
+                        if (item is Weapon)
+                        {
+                            Weapon wapon = (Weapon)item;
+                            return wapon.damage;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
         public void SetMesh(int index, int id, PlayerPart part)
         {
             if (id != -1)

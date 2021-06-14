@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ItemCollectorScript;
+using Inventory;
+using GameManagerScript;
 
 namespace PlayerScript
 {
@@ -23,9 +25,12 @@ namespace PlayerScript
         [SerializeField] private GameObject collideMelee;
         [SerializeField] private float rangeRangedAttack;
 
+        [SerializeField] private Inventory.Inventory itemsInventory;
+        [SerializeField] private Equipment playerEquipment;
+        [SerializeField] private ItemCollector myItemCollector;
+
         //Provisorio------------------------
         [SerializeField] private List<GameObject> itemsOnInventory;
-        [SerializeField] private ItemCollector myItemController;
 
         private float originalSpeed;
         private float maxSpeedRunning;
@@ -38,6 +43,8 @@ namespace PlayerScript
             isOnAir = false;
             gravityValue = -9.8f;
             playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
+            if(GameManager.Get() != null)
+                GameManager.Get().InitializeResultScreen();
         }
         void Update()
         {
@@ -50,15 +57,16 @@ namespace PlayerScript
         {
             if (Input.GetKey(KeyCode.E))
             {
-                myItemController.gameObject.SetActive(true);
+                myItemCollector.gameObject.SetActive(true);
             }
             else
-                myItemController.gameObject.SetActive(false);
+                myItemCollector.gameObject.SetActive(false);
 
-            if (myItemController.ItemPicked())
+            if (myItemCollector.ItemPicked())
             {
-                if (!itemsOnInventory.Contains(myItemController.ReturnItemToPlayer()))
-                    itemsOnInventory.Add(myItemController.ReturnItemToPlayer());
+
+                if (!itemsOnInventory.Contains(myItemCollector.ReturnItemToPlayer()))
+                    itemsOnInventory.Add(myItemCollector.ReturnItemToPlayer());
             }
         }
         public void Attack()
@@ -126,8 +134,8 @@ namespace PlayerScript
             {
                 playerData.characterHp = 0;
                 playerData.characterAlive = false;
-                if (GameManagerScript.GameManager.Get() != null)
-                    GameManagerScript.GameManager.Get().GameIsOver();
+                if (GameManager.Get() != null)
+                    GameManager.Get().GameIsOver();
             }
         }
         void CheckIfIsOnGround()
