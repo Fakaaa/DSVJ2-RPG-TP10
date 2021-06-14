@@ -15,22 +15,27 @@ namespace UIResultScript
 
         private void Start()
         {
-            if (GameManager.Get().winner)
+            if (GameManager.Get() != null)
             {
-                winner.gameObject.SetActive(true);
-                loser.gameObject.SetActive(false);
-            }
-            else
-            {
-                winner.gameObject.SetActive(false);
-                loser.gameObject.SetActive(true);
+                if (GameManager.Get().winner)
+                {
+                    winner.gameObject.SetActive(true);
+                    loser.gameObject.SetActive(false);
+                }
+                else
+                {
+                    winner.gameObject.SetActive(false);
+                    loser.gameObject.SetActive(true);
+                }
             }
         }
 
         public void LoadMenuScene()
         {
-            LoaderManager.Get().LoadScene("MainMenu"); 
-            UILoadingScreen.Get().SetVisible(true);
+            if (LoaderManager.Get() != null)
+                LoaderManager.Get().LoadScene("MainMenu");
+            if (UILoadingScreen.Get() != null)
+                UILoadingScreen.Get().SetVisible(true);
             gameObject.SetActive(false);
         }
 

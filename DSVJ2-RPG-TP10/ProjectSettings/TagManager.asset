@@ -9,6 +9,7 @@ TagManager:
   - MeleeAttackEnemy
   - Ground
   - Item
+  - RangedAttackPlayer
   layers:
   - Default
   - TransparentFX
