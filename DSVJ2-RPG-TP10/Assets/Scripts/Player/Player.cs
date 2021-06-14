@@ -247,6 +247,7 @@ namespace PlayerScript
                     AudioManager.Get().Play("Pushed");
 
                 ReceiveDamage(5);
+                Instantiate(playerData.combat, transform.position + Vector3.up, Quaternion.identity);
             }
         }
     }

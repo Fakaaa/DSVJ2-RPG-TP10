@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class CharacterData
 {
     public int characterHp;
@@ -7,6 +9,8 @@ public class CharacterData
 
     public float characterSpeed;
     public bool characterAlive;
+
+    public ParticleSystem combat;
 
     public enum AttackType
     {
