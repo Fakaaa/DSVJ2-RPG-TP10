@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -438,8 +438,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1969119369}
-  - {fileID: 1880376089}
   - {fileID: 419782865}
+  - {fileID: 1880376089}
   - {fileID: 2061578684}
   - {fileID: 1368589722}
   - {fileID: 918137777}
@@ -576,12 +576,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 307334349}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.020019531, y: -0.000015258789}
-  m_SizeDelta: {x: 3.439982, y: -139.99998}
+  m_AnchoredPosition: {x: 0.020019531, y: 0.33598328}
+  m_SizeDelta: {x: 3.4400024, y: -63.559692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419782866
 MonoBehaviour:
@@ -1240,11 +1240,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 307334349}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 211}
+  m_AnchoredPosition: {x: 0, y: 199.8}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880376090
@@ -1525,8 +1525,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 269.65}
+  m_AnchoredPosition: {x: 1.74, y: 4}
+  m_SizeDelta: {x: 800, y: 333.96463}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061578685
 MonoBehaviour:
@@ -1569,7 +1569,9 @@ MonoBehaviour:
     sound - from opengameart.org by artisticdude
 
     Pushed sound - from opengameart.org
-    by Exewin'
+    by Exewin
+
+    Menu And Game Songs - from GDM by OwlTheoryMusic'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

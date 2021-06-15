@@ -27,12 +27,16 @@ namespace PlayerScript
         [SerializeField] private GameObject collideMelee;
         [SerializeField] private GameObject arrowModelPrefab;
         [SerializeField] private float rangeRangedAttack;
+        [SerializeField] private float invulnerabilityTime;
+        [SerializeField] private float timeInvulneravility;
         [Header("PLAYER INVENTORY")]
         [SerializeField] private Inventory.Inventory itemsInventory;
         [SerializeField] private Equipment playerEquipment;
         [SerializeField] private ItemCollector myItemCollector;
         private GameObject arrow;
         private Vector3 posToReach;
+
+        private MeleeEnemyRange damageFromEnemey;
 
         //Provisorio------------------------
         [Header("TEMPORAL")]
@@ -49,7 +53,7 @@ namespace PlayerScript
             isOnAir = false;
             gravityValue = -9.8f;
             playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
-            if(GameManager.Get() != null)
+            if (GameManager.Get() != null)
                 GameManager.Get().InitializeResultScreen();
 
             RangedAttack.damageArrow += PassDamageToArrow;
@@ -71,11 +75,11 @@ namespace PlayerScript
 
         public int PassDamageToArrow()
         {
-           return playerData.characterDamage;
+            return playerData.characterDamage;
         }
         public void PlayerTakeItem()
         {
-            if(!Input.GetKey(KeyCode.E))
+            if (!Input.GetKey(KeyCode.E))
             {
                 myItemCollector.gameObject.SetActive(false);
                 return;
@@ -138,7 +142,7 @@ namespace PlayerScript
             else
                 Debug.DrawRay(rayMouseCamera.origin, rayMouseCamera.direction * rangeRangedAttack, Color.white);
 
-            if(arrow != null)
+            if (arrow != null)
             {
                 if (arrow.transform.position != posToReach)
                     arrow.transform.position = Vector3.Lerp(arrow.transform.position, posToReach, Time.deltaTime * 2);
@@ -196,7 +200,7 @@ namespace PlayerScript
         {
             if (playerData.attackReady)
             {
-                if(Input.GetKey(KeyCode.LeftShift)) //Run
+                if (Input.GetKey(KeyCode.LeftShift)) //Run
                 {
                     if (AudioManager.Get() != null)
                     {
@@ -204,7 +208,7 @@ namespace PlayerScript
                         AudioManager.Get().Play("Run");
                     }
 
-                        if (playerData.characterSpeed < maxSpeedRunning)
+                    if (playerData.characterSpeed < maxSpeedRunning)
                         playerData.characterSpeed += speedMultiplerWhenRun * Time.deltaTime;
                     else
                         playerData.characterSpeed = maxSpeedRunning;
@@ -245,11 +249,39 @@ namespace PlayerScript
         {
             if (other.transform.CompareTag("MeleeAttackEnemy"))
             {
+                if (timeInvulneravility >= invulnerabilityTime)
+                {
+                    damageFromEnemey = other.transform.gameObject.GetComponent<MeleeEnemyRange>();
+                    if (damageFromEnemey != null)
+                        ReceiveDamage(damageFromEnemey.GetDamageEnemey());
+
+                    timeInvulneravility = 0;
+
+                    Instantiate(playerData.combat, transform.position + Vector3.up, Quaternion.identity);
+                }
                 if (AudioManager.Get() != null)
                     AudioManager.Get().Play("Pushed");
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (timeInvulneravility <= invulnerabilityTime)
+                timeInvulneravility += Time.deltaTime;
 
-                ReceiveDamage(5);
-                Instantiate(playerData.combat, transform.position + Vector3.up, Quaternion.identity);
+            if (other.transform.CompareTag("MeleeAttackEnemy"))
+            {
+                if (timeInvulneravility >= invulnerabilityTime)
+                {
+                    damageFromEnemey = other.transform.gameObject.GetComponent<MeleeEnemyRange>();
+                    if (damageFromEnemey != null)
+                        ReceiveDamage(damageFromEnemey.GetDamageEnemey());
+
+                    timeInvulneravility = 0;
+
+                    Instantiate(playerData.combat, transform.position + Vector3.up, Quaternion.identity);
+                }
+                if (AudioManager.Get() != null)
+                    AudioManager.Get().Play("Pushed");
             }
         }
     }
