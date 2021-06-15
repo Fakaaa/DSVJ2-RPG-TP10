@@ -38,6 +38,7 @@ namespace Inventory
         void Start()    //   Carrera de start con Inventory
         {
             Invoke(nameof(IniciarInventarioUI), 0);       // ver como iniciar despues de la lógica de inventario.
+            inventory.InventoryChanged.AddListener(RefreshAllButtons);
 
             for (int i = 0; i <= (int)Inventory.SortType.Level; i++)
             {
