@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 7547301973704610125}
   - component: {fileID: 7547301973704610130}
   - component: {fileID: 7547301973704610131}
-  - component: {fileID: 7547301973704610128}
   - component: {fileID: 7547301973704610129}
+  - component: {fileID: 1211740455}
   - component: {fileID: 5411714798157532781}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 79f5fd36b579b3442b77e35547e7f869, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7547301973704610128
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547301973704610134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7547301973704610129
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,6 +98,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &1211740455
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547301973704610134}
+  m_Material: {fileID: 13400000, guid: 03743e4202150bd4bb701caff917387c, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &5411714798157532781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 6862829503988379863, guid: ff7cf8148315c514ea645d8af9859c80,
     type: 3}
+  item: {fileID: 0}

@@ -155,10 +155,6 @@ namespace Inventory
             Refresh(playerList);
         }
 
-        private void RefreshTooltipText()
-        {
-
-        }
         public void MouseDrag()
         {
             inv.MouseDrag();
