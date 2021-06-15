@@ -33,6 +33,7 @@ namespace EnemyAIFSMScript
         public float distanceToRestart = 5;
         public float timeStopped = 1;
         public Transform target;
+        private Vector3 targetPos;
         private float time;
 
         private void Start()
@@ -94,7 +95,7 @@ namespace EnemyAIFSMScript
                     }
                     break;
                 case EnemyState.GoAway:
-                    Vector3 dir02 = new Vector3(transform.position.x - target.transform.position.x, transform.position.y - target.transform.position.y, transform.position.z - target.transform.position.z);
+                    Vector3 dir02 = new Vector3(transform.position.x - targetPos.x, transform.position.y - targetPos.y, transform.position.z - targetPos.z);
                     transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
 
                     // Cuando llego a cierto punto vuelve a su comportamiento erratico
@@ -115,6 +116,9 @@ namespace EnemyAIFSMScript
         private void SetState(EnemyState enemyState)
         {
             state = enemyState;
+
+            if (enemyState == EnemyState.GoAway)
+                targetPos = target.position;
         }
 
         public void Attack()
