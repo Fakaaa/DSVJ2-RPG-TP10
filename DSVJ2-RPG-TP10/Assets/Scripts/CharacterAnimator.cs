@@ -12,7 +12,11 @@ public class CharacterAnimator
 	public void UpdateSpeed(float speed)
     {
 		animator.SetFloat("speed", speed);
-    }
+	}
+	public void SetArmor(bool hasArmor)
+	{
+		animator.SetBool("hasArmor", hasArmor);
+	}
 	public void PlayMeleeAttack()
     {
 		animator.SetTrigger("meleeAttack");
@@ -20,6 +24,10 @@ public class CharacterAnimator
 	public void PlayRangedAttack()
 	{
 		animator.SetTrigger("rangedAttack");
+	}
+	public void PlayReceiveDamage()
+	{
+		animator.SetTrigger("receiveDamage");
 	}
 	#endregion
 }

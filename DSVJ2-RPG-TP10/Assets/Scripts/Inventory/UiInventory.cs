@@ -195,7 +195,7 @@ namespace Inventory
             {
                 if (slotPick.GetPlayerList() == UiItemSlot.PlayerList.Inventory)
                 {
-                    inventory.DeleteItem(slotPick.GetIndex());
+                    inventory.DropItem(slotPick.GetIndex());
                     slotPick.RefreshButton();
                 }
                 return;

@@ -75,17 +75,17 @@ namespace PlayerScript
         }
         public void PlayerTakeItem()
         {
-            if (Input.GetKey(KeyCode.E))
+            if(!Input.GetKey(KeyCode.E))
             {
-                myItemCollector.gameObject.SetActive(true);
-            }
-            else
                 myItemCollector.gameObject.SetActive(false);
+                return;
+            }
+            myItemCollector.gameObject.SetActive(true);
 
             if (myItemCollector.ItemPicked())
             {
-                if (!itemsOnInventory.Contains(myItemCollector.ReturnItemToPlayer()))
-                    itemsOnInventory.Add(myItemCollector.ReturnItemToPlayer());
+                int itemID = myItemCollector.ReturnItemToPlayer();
+                itemsInventory.AddNewItem(itemID, 1);
             }
         }
         public void Attack()
@@ -146,10 +146,12 @@ namespace PlayerScript
         }
         public void ReceiveDamage(int damageTaken)
         {
+            playerAnimator.PlayReceiveDamage();
             if (playerData.characterDefense > 0)
                 playerData.characterDefense -= damageTaken;
             else
             {
+                playerAnimator.SetArmor(false);
                 playerData.characterDefense = 0;
                 playerData.characterHp -= damageTaken;
             }

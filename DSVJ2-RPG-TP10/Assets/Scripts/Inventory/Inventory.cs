@@ -8,6 +8,8 @@ namespace Inventory
     {
         [SerializeField] List<Slot> CurrentItems;
         [SerializeField] int size = 10;
+        [SerializeField] GameObject itemPrefab;
+        [SerializeField] Transform itemsEmpty;
         Equipment equipmentComponent;
 
         private void Awake()
@@ -68,6 +70,16 @@ namespace Inventory
             {
                 CurrentItems[slotPos].EmptySlot();
             }
+        }
+        public void DropItem(int slotPos)
+        {
+            if (CurrentItems[slotPos].IsEmpty()) { return; }
+
+            GameObject go = Instantiate(itemPrefab);
+            go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = CurrentItems[slotPos].ID;
+            go.transform.SetParent(itemsEmpty);
+            go.name = "Dropped Item " + itemsEmpty.childCount.ToString();
+            CurrentItems[slotPos].EmptySlot();
         }
 
         public void SwapItem(int slotPosFrom, int slotPosTo)

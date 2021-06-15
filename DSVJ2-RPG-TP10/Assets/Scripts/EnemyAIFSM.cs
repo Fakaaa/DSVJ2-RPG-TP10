@@ -129,6 +129,7 @@ namespace EnemyAIFSMScript
 
         public void ReceiveDamage(int damageTaken)
         {
+            enemyAnimator.PlayReceiveDamage();
             enemyData.characterHp -= damageTaken;
             Instantiate(enemyData.combat, transform.position + Vector3.up, Quaternion.identity);
 

@@ -1,29 +1,28 @@
 ﻿using UnityEngine;
+using ItemSO;
 
 namespace ItemCollectorScript
 {
     public class ItemCollector : MonoBehaviour
     {
-        //En vez de devolver gameObject devolveria un Item(ScrpitableObject)
-        private GameObject itemPickedUp;
+        private int itemPickedUpID = -1;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Item"))
-            {
-                itemPickedUp = other.gameObject;
-            }
+            if (!other.CompareTag("Item")) { return; }
+
+            itemPickedUpID = other.gameObject.GetComponent<CollectibleItemScript.CollectibleItem>().itemID;
+            Destroy(other.gameObject);
         }
         public bool ItemPicked()
         {
-            if (itemPickedUp != null)
-                return true;
-            else
-                return false;
+            return itemPickedUpID > 0;
         }
-        public GameObject ReturnItemToPlayer()
+        public int ReturnItemToPlayer()
         {
-            return itemPickedUp;
+            int itemToReturn = itemPickedUpID;
+            itemPickedUpID = -1;
+            return itemToReturn;
         }
     }
 }
