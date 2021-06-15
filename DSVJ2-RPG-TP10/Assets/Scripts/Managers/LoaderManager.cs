@@ -70,9 +70,8 @@ namespace LoaderManagerScript
                 switch (scene)
                 {
                     case "MainMenu":
+                        AudioManager.Get().StopAllSFX();
                         AudioManager.Get().Play("MainMenuSong");
-                        AudioManager.Get().Stop("CreditsSong");
-                        AudioManager.Get().Stop("GameSong");
                         break;
                     case "Credits":
                         AudioManager.Get().Play("CreditsSong");
