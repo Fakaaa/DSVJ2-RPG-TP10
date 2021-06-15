@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ItemSO;
+using UnityEngine.Events;
 
 namespace Inventory
 {
     public class Inventory : MonoBehaviour
     {
+        public UnityEvent InventoryChanged;
         [SerializeField] List<Slot> CurrentItems;
         [SerializeField] int size = 10;
         [SerializeField] GameObject itemPrefab;
@@ -14,6 +16,7 @@ namespace Inventory
 
         private void Awake()
         {
+            InventoryChanged = new UnityEvent();
             equipmentComponent = GetComponent<Equipment>();
             for (int i = 0; i < size; i++)
             {
@@ -58,6 +61,7 @@ namespace Inventory
                 if (CurrentItems[i].IsEmpty())
                 {
                     CurrentItems[i].FillSlot(ID, amount);
+                    InventoryChanged?.Invoke();
                     return true;
                 }
             }
