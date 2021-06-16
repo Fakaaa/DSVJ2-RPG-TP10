@@ -11,6 +11,7 @@ namespace Inventory
         [SerializeField] List<Slot> CurrentItems;
         [SerializeField] int size = 10;
         [SerializeField] GameObject itemPrefab;
+        [SerializeField] Transform player;
         [SerializeField] Transform itemsEmpty;
         Equipment equipmentComponent;
 
@@ -78,10 +79,10 @@ namespace Inventory
         public void DropItem(int slotPos)
         {
             if (CurrentItems[slotPos].IsEmpty()) { return; }
-
-            GameObject go = Instantiate(itemPrefab);
+            Vector3 itemPos = player.position;
+            itemPos.y++;
+            GameObject go = Instantiate(itemPrefab, itemPos, Quaternion.identity, itemsEmpty);
             go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = CurrentItems[slotPos].ID;
-            go.transform.SetParent(itemsEmpty);
             go.name = "Dropped Item " + itemsEmpty.childCount.ToString();
             CurrentItems[slotPos].EmptySlot();
         }

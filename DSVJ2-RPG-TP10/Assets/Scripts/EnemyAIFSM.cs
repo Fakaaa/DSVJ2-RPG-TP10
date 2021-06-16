@@ -153,7 +153,9 @@ namespace EnemyAIFSMScript
 
         void DropItem()
         {
-            GameObject go = Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
+            Vector3 itemPos = transform.position;
+            itemPos.y++;
+            GameObject go = Instantiate(itemPrefab, itemPos, Quaternion.identity, container);
             go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = Inventory.GameplayManager.GetInstance().GetRandomItemID();
         }
 
