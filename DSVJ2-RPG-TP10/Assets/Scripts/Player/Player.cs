@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using ItemCollectorScript;
 using Inventory;
 using GameManagerScript;
@@ -15,8 +14,6 @@ namespace PlayerScript
         [SerializeField] Vector3 movementVec;
         [SerializeField] Vector3 playerVelocity;
         [SerializeField] private float rotateSpeed;
-        [SerializeField] private float jumpPower;
-        [SerializeField] private bool isOnAir;
         [SerializeField] public CharacterAnimator playerAnimator;
         [SerializeField] private float speedMultiplerWhenRun;
         [Space(50)]
@@ -40,10 +37,6 @@ namespace PlayerScript
         private MeleeEnemyRange damageFromEnemey;
         private bool gameIsOver = false;
 
-        //Provisorio------------------------
-        [Header("TEMPORAL")]
-        [SerializeField] private List<GameObject> itemsOnInventory;
-
         private float originalSpeed;
         private float maxSpeedRunning;
         private void Start()
@@ -53,7 +46,6 @@ namespace PlayerScript
             maxSpeedRunning = originalSpeed + speedMultiplerWhenRun;
             playerData.attackReady = true;
             playerData.characterAlive = true;
-            isOnAir = false;
             gravityValue = -9.8f;
             playerAnimator = new CharacterAnimator(gameObject.GetComponentInChildren<Animator>());
             if (GameManager.Get() != null)
@@ -71,7 +63,7 @@ namespace PlayerScript
         void Update()
         {
             MovePlayer();
-            CheckIfIsOnGround();
+            //CheckIfIsOnGround();
             PlayerTakeItem();
             Attack();
         }
@@ -174,33 +166,10 @@ namespace PlayerScript
                 }
             }
         }
-        void CheckIfIsOnGround()
-        {
-            RaycastHit hit;
-            Ray raycast = new Ray(transform.position, -transform.up * 0.1f);
-            Debug.DrawRay(raycast.origin, raycast.direction * 0.1f, Color.red);
-            if (Physics.Raycast(raycast, out hit, 0.1f))
-            {
-                if (hit.collider.CompareTag("Ground"))
-                {
-                    isOnAir = false;
-                    playerVelocity.y = 0;
-                }
-            }
-            else
-                isOnAir = true;
-        }
         void ApplyGravity()
         {
             playerVelocity.y += gravityValue * Time.deltaTime;
             playerMovement.Move(playerVelocity * Time.deltaTime);
-        }
-        void Jump()
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && !isOnAir)
-                playerVelocity.y = Mathf.Sqrt(jumpPower * -3.0f * gravityValue);    //En deshuso (No animaciones , muchos bugs con el enemigo.)
-
-            ApplyGravity();
         }
         void MovePlayer()
         {
@@ -252,7 +221,6 @@ namespace PlayerScript
 
                 playerMovement.Move(movementVec * playerData.characterSpeed * Time.deltaTime);
 
-                //Jump();
                 ApplyGravity();
             }
         }
