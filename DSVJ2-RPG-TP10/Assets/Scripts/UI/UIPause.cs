@@ -10,9 +10,11 @@ namespace UIPauseScript
     {     
         public void LoadMenuScene()
         {
-            LoaderManager.Get().LoadScene("MainMenu");  
-            UILoadingScreen.Get().SetVisible(true);
             gameObject.SetActive(false);
+            if (LoaderManager.Get() != null)
+                LoaderManager.Get().LoadScene("MainMenu");
+            if (UILoadingScreen.Get() != null)
+                UILoadingScreen.Get().SetVisible(true);
         }
 
         public void ExitGame()

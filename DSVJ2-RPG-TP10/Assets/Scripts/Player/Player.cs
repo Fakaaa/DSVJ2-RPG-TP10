@@ -29,6 +29,7 @@ namespace PlayerScript
         [SerializeField] private float rangeRangedAttack;
         [SerializeField] private float invulnerabilityTime;
         [SerializeField] private float timeInvulneravility;
+
         [Header("PLAYER INVENTORY")]
         [SerializeField] private Inventory.Inventory itemsInventory;
         [SerializeField] private Equipment playerEquipment;
@@ -37,6 +38,7 @@ namespace PlayerScript
         private Vector3 posToReach;
 
         private MeleeEnemyRange damageFromEnemey;
+        private bool gameIsOver = false;
 
         //Provisorio------------------------
         [Header("TEMPORAL")]
@@ -46,6 +48,7 @@ namespace PlayerScript
         private float maxSpeedRunning;
         private void Start()
         {
+            gameIsOver = false;
             originalSpeed = playerData.characterSpeed;
             maxSpeedRunning = originalSpeed + speedMultiplerWhenRun;
             playerData.attackReady = true;
@@ -164,8 +167,11 @@ namespace PlayerScript
             {
                 playerData.characterHp = 0;
                 playerData.characterAlive = false;
-                if (GameManager.Get() != null)
+                if (GameManager.Get() != null && !gameIsOver)
+                {
                     GameManager.Get().GameIsOver();
+                    gameIsOver = true;
+                }
             }
         }
         void CheckIfIsOnGround()
