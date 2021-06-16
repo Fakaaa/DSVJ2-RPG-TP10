@@ -12135,6 +12135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 1521793392}
+  inventoryUI: {fileID: 3678044530530742035}
+  resultScreen: {fileID: 2713920467935398622, guid: da96fe0f6a36db34e97eb1fda1d26b85,
+    type: 3}
 --- !u!4 &1334116847
 Transform:
   m_ObjectHideFlags: 0
@@ -24631,6 +24634,17 @@ PrefabInstance:
       propertyPath: playerUIMesh.Array.data[6]
       value: 
       objectReference: {fileID: 3678044528828671098}
+    - target: {fileID: 1599959372363875380, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
+        type: 3}
+    - target: {fileID: 1599959372363875380, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: itemsEmpty
+      value: 
+      objectReference: {fileID: 1844334770}
     - target: {fileID: 2415616700771126040, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
       propertyPath: m_RootOrder
@@ -24797,6 +24811,11 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 4013213066188287871}
+    - target: {fileID: 3678044528824698636, guid: d8f604a3859c0dc4c94aa73e2058e101,
+        type: 3}
+      propertyPath: m_text
+      value: Epic Quest
+      objectReference: {fileID: 0}
     - target: {fileID: 3678044530040683004, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_RootOrder

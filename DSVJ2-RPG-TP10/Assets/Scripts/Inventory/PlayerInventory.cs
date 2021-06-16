@@ -57,16 +57,8 @@ namespace Inventory
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (!inventoryUI.activeSelf)
-                    inventoryUI.SetActive(true);
-                else
-                    inventoryUI.SetActive(false);
+                inventoryUI.SetActive(!inventoryUI.activeSelf);
             }
-
-            if (inventoryUI.activeSelf)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = originalTimeScale;
         }
 
         void OnDestroy()

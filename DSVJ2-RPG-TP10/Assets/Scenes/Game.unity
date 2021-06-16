@@ -12134,6 +12134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 1521793392}
+  inventoryUI: {fileID: 3678044530530742035}
 --- !u!4 &1334116847
 Transform:
   m_ObjectHideFlags: 0

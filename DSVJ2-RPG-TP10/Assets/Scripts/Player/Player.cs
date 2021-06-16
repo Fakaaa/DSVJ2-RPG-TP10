@@ -63,7 +63,6 @@ namespace PlayerScript
         void Update()
         {
             MovePlayer();
-            //CheckIfIsOnGround();
             PlayerTakeItem();
             Attack();
         }
