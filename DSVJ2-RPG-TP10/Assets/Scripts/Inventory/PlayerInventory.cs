@@ -146,22 +146,23 @@ namespace Inventory
             int totalDefenseValue = 0;
             int totalAttackValue = 0;
 
-            //DAMAGE
-            totalAttackValue += CheckAttackValue(0);    //Slot 1
-            totalAttackValue += CheckAttackValue(1);    //Slot 2
-            totalAttackValue += CheckAttackValue(2);    //Slot 3
-            totalAttackValue += CheckAttackValue(3);    //Slot 4
-            CharacterData.AttackType newTypeAttack = CheckTypeAttack(1);
             //DEFENSE
             totalDefenseValue += CheckDefenseValue(4);   // Helmet
             totalDefenseValue += CheckDefenseValue(5);   // Gloves
             totalDefenseValue += CheckDefenseValue(6);   // Boots
             totalDefenseValue += CheckDefenseValue(7);   // Shoulders
             totalDefenseValue += CheckDefenseValue(8);   // Armor
-
-            player.playerData.actualAttackType = newTypeAttack;
             player.playerData.characterDefense = totalDefenseValue;
+
+            //DAMAGE
+            totalAttackValue += CheckAttackValue(0);    //Slot 1
+            totalAttackValue += CheckAttackValue(1);    //Slot 2
+            totalAttackValue += CheckAttackValue(2);    //Slot 3
+            totalAttackValue += CheckAttackValue(3);    //Slot 4
+            CharacterData.AttackType newTypeAttack = CheckTypeAttack(1);
+            player.playerData.actualAttackType = newTypeAttack;
             player.playerData.characterDamage = totalAttackValue;
+
 
             if (player.playerData.characterDamage <= 0)
                 player.playerData.characterDamage = 10;
@@ -172,47 +173,42 @@ namespace Inventory
 
         private CharacterData.AttackType CheckTypeAttack(int slotWeapon)
         {
-            if (equipment.GetSlot(slotWeapon).ID != -1)
+            if (equipment.GetSlot(slotWeapon).ID == -1) { return 0; }
+
+            Item itemToCheck = GameplayManager.GetInstance()?.GetItemFromID(equipment.GetSlot(slotWeapon).ID);
+            if (itemToCheck == null) { return 0; }
+            if (itemToCheck.GetItemType() != ItemType.Arms) { return 0; }
+
+            Weapon itemWeapon = null;
+            if (itemToCheck is Weapon) 
             {
-                Item itemToCheck = GameplayManager.GetInstance().GetItemFromID(equipment.GetSlot(slotWeapon).ID);
-                if (itemToCheck != null)
-                {
-                    if (itemToCheck.GetItemType() == ItemType.Arms)
-                    {
-                        Weapon itemWeapon = (Weapon)itemToCheck;
-                        if(itemWeapon != null)
-                        {
-                            if(itemWeapon.GetWeaponType() == WeaponType.Dagger || itemWeapon.GetWeaponType() == WeaponType.Sword
-                                || itemWeapon.GetWeaponType() == WeaponType.Spear || itemWeapon.GetWeaponType() == WeaponType.Trident)
-                            {
-                                return CharacterData.AttackType.Melee;
-                            }
-                            else
-                            {
-                                return CharacterData.AttackType.Ranged;
-                            }
-                        }
-                    }
-                }
+                itemWeapon = (Weapon)itemToCheck;
             }
-            return 0;
+             
+            if (itemWeapon == null) { return 0; }
+
+            if (itemWeapon.GetWeaponType() == WeaponType.Bow || itemWeapon.GetWeaponType() == WeaponType.Crossbow)
+            {
+                return CharacterData.AttackType.Ranged;
+            }
+            else
+            {
+                return CharacterData.AttackType.Melee;
+            }
         }
 
         private int CheckDefenseValue(int index)
         {
             if (equipment.GetSlot(index).ID != -1)
             {
-                if (GameplayManager.GetInstance() != null)
-                {
-                    Item item = GameplayManager.GetInstance().GetItemFromID(equipment.GetSlot(index).ID);
+                Item item = GameplayManager.GetInstance()?.GetItemFromID(equipment.GetSlot(index).ID);
 
-                    if (item != null)
+                if (item != null)
+                {
+                    if (item is Outfit)
                     {
-                        if (item is Outfit)
-                        {
-                            Outfit _item = (Outfit)item;
-                            return _item.defense;
-                        }
+                        Outfit _item = (Outfit)item;
+                        return _item.defense;
                     }
                 }
             }
@@ -231,8 +227,13 @@ namespace Inventory
                     {
                         if (item is Weapon)
                         {
-                            Weapon wapon = (Weapon)item;
-                            return wapon.damage;
+                            Weapon weapon = (Weapon)item;
+                            return weapon.damage;
+                        }
+                        else if (item is Shield)
+                        {
+                            Shield _item = (Shield)item;
+                            player.playerData.characterDefense += _item.resistance;
                         }
                     }
                 }
