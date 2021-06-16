@@ -139,7 +139,8 @@ namespace EnemyAIFSMScript
                 enemyData.characterAlive = false;
 
                 GameManager.Get().RemoveEnemyToList(gameObject);
-                Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
+                GameObject go = Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
+                go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = Inventory.GameplayManager.GetInstance().GetRandomItemID();
                 Destroy(gameObject);
             }
         }
