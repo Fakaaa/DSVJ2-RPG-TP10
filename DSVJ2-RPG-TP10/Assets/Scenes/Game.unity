@@ -24126,6 +24126,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Boi (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2790509608683309961, guid: 710dd4aaf30d10d43a6d7aa20a998037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2790509608683309962, guid: 710dd4aaf30d10d43a6d7aa20a998037,
         type: 3}
       propertyPath: m_RootOrder
@@ -24383,6 +24388,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Boi
       objectReference: {fileID: 0}
+    - target: {fileID: 2790509608683309961, guid: 710dd4aaf30d10d43a6d7aa20a998037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2790509608683309962, guid: 710dd4aaf30d10d43a6d7aa20a998037,
         type: 3}
       propertyPath: m_RootOrder
@@ -24630,6 +24640,17 @@ PrefabInstance:
       propertyPath: playerUIMesh.Array.data[6]
       value: 
       objectReference: {fileID: 3678044528828671098}
+    - target: {fileID: 1599959372363875380, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
+        type: 3}
+    - target: {fileID: 1599959372363875380, guid: 143c308f13c7aa44aaee8300e5b89c1c,
+        type: 3}
+      propertyPath: itemsEmpty
+      value: 
+      objectReference: {fileID: 1844334770}
     - target: {fileID: 2415616700771126040, guid: 143c308f13c7aa44aaee8300e5b89c1c,
         type: 3}
       propertyPath: m_RootOrder

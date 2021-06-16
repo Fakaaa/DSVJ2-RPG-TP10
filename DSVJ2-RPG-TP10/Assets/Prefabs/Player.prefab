@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7789321138638543582
 Transform:
   m_ObjectHideFlags: 0
@@ -149,8 +149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673836601375564358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 1.288}
+  m_LocalScale: {x: 1, y: 1, z: 1.8609}
   m_Children: []
   m_Father: {fileID: 2415616700771126040}
   m_RootOrder: 1
@@ -710,24 +710,28 @@ MonoBehaviour:
   rotateSpeed: 0.2
   jumpPower: 0
   isOnAir: 0
+  speedMultiplerWhenRun: 3
   playerData:
     characterHp: 100
     characterDefense: 0
     characterDamage: 10
     characterSpeed: 3
     characterAlive: 1
+    combat: {fileID: 0}
     actualAttackType: 1
     rangeAttack: 0.7
     coldownAttack: 0
     resetColdown: 1
     attackReady: 0
-  speedMultiplerWhenRun: 3
   collideMelee: {fileID: 673836601375564358}
+  arrowModelPrefab: {fileID: 0}
   rangeRangedAttack: 20
+  invulnerabilityTime: 0
+  timeInvulneravility: 0
   itemsInventory: {fileID: 0}
   playerEquipment: {fileID: 0}
+  myItemCollector: {fileID: 0}
   itemsOnInventory: []
-  myItemController: {fileID: 582971201276668176}
 --- !u!1 &2571401838216296469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,8 +2878,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1d25476ba80ad4c83d5066b5222af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
   CurrentItems: []
   size: 12
+  itemPrefab: {fileID: 0}
+  itemsEmpty: {fileID: 0}
 --- !u!114 &1599959372363875381
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -234,8 +234,11 @@ namespace PlayerScript
                         }
                         else if(movementVec == Vector3.zero)
                         {
-                            AudioManager.Get().Stop("Walk");
-                            AudioManager.Get().Stop("Run");
+                            if(AudioManager.Get() != null)
+                            {
+                                AudioManager.Get().Stop("Walk");
+                                AudioManager.Get().Stop("Run");
+                            }
                         }
                     }
                 }

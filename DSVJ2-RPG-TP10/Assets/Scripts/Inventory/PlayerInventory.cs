@@ -163,6 +163,9 @@ namespace Inventory
             player.playerData.characterDefense = totalDefenseValue;
             player.playerData.characterDamage = totalAttackValue;
 
+            if (player.playerData.characterDamage <= 0)
+                player.playerData.characterDamage = 10;
+
             if (player.playerData.actualAttackType == CharacterData.AttackType.Ranged)
                 player.PassDamageToArrow();
         }

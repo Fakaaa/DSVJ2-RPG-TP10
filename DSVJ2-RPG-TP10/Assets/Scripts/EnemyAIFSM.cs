@@ -144,10 +144,17 @@ namespace EnemyAIFSMScript
                 enemyData.characterAlive = false;
 
                 GameManager.Get().RemoveEnemyToList(gameObject);
-                GameObject go = Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
-                go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = Inventory.GameplayManager.GetInstance().GetRandomItemID();
+                
+                DropItem();
+
                 Destroy(gameObject);
             }
+        }
+
+        void DropItem()
+        {
+            GameObject go = Instantiate(itemPrefab, transform.position, Quaternion.identity, container);
+            go.GetComponent<CollectibleItemScript.CollectibleItem>().itemID = Inventory.GameplayManager.GetInstance().GetRandomItemID();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -164,7 +171,7 @@ namespace EnemyAIFSMScript
 
         private void MeteoriteDamageEnemy(int damage)
         {
-            enemyData.characterHp -= damage;
+            ReceiveDamage(damage);
         }
 
         private void OnEnable()
