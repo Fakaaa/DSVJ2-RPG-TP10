@@ -40,5 +40,13 @@ namespace AudioManagerScript
                     s.source.Stop();
             }
         }
+
+        public void StopAllSFX()
+        {
+            foreach (Sound s in sounds)
+            {
+                Stop(s.name);
+            }
+        }
     }
 }

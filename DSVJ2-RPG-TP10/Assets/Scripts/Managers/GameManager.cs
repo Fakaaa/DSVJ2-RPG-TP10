@@ -24,6 +24,7 @@ namespace GameManagerScript
                 winner = false;
             }
         }
+
         public void AddEnemyToList(GameObject enemy)
         {
             enemysAlive.Add(enemy);

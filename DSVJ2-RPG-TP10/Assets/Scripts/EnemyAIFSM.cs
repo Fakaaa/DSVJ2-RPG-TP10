@@ -8,11 +8,14 @@ namespace EnemyAIFSMScript
     {
         [SerializeField] public CharacterData enemyData;
         [SerializeField] public CharacterAnimator enemyAnimator;
+        [SerializeField] public CharacterController enemyControl;
 
         public GameObject itemPrefab;
         public Transform container;
         [SerializeField] private GameObject collideMelee;
         private bool attacked = false;
+
+        private MeleeRange damageFromPlayer;
 
         public Terrain terrain;
 
@@ -61,7 +64,9 @@ namespace EnemyAIFSMScript
                     break;
                 case EnemyState.GoingToTarget:
                     Vector3 dir = new Vector3(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y, target.transform.position.z - transform.position.z);
-                    transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+                    enemyControl.Move(dir.normalized * speed * Time.deltaTime);
+                    //transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir.normalized), 1);
 
                     enemyAnimator.UpdateSpeed(dir.normalized.sqrMagnitude * speed);
@@ -96,8 +101,8 @@ namespace EnemyAIFSMScript
                     break;
                 case EnemyState.GoAway:
                     Vector3 dir02 = new Vector3(transform.position.x - targetPos.x, transform.position.y - targetPos.y, transform.position.z - targetPos.z);
-                    transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
-
+                    //transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
+                    enemyControl.Move(dir02.normalized * speed * Time.deltaTime);
                     // Cuando llego a cierto punto vuelve a su comportamiento erratico
                     if (Vector3.Distance(transform.position, target.transform.position) > distanceToRestart)
                         NextState();
@@ -149,9 +154,11 @@ namespace EnemyAIFSMScript
         {
             if (other.transform.CompareTag("MeleeAttackPlayer"))
             {
+                damageFromPlayer = other.transform.GetComponent<MeleeRange>();
+
                 attacked = true;
-                if(other.transform.GetComponent<MeleeRange>() != null)
-                    ReceiveDamage(other.transform.GetComponent<MeleeRange>().GetDamagePlayer());
+                if(damageFromPlayer != null)
+                    ReceiveDamage(damageFromPlayer.GetDamagePlayer());
             }
         }
 
