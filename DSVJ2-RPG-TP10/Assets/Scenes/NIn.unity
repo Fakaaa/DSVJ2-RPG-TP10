@@ -8945,6 +8945,7 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  enemyControl: {fileID: 0}
   itemPrefab: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
     type: 3}
   container: {fileID: 1844334770}
@@ -13546,6 +13547,7 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  enemyControl: {fileID: 0}
   itemPrefab: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
     type: 3}
   container: {fileID: 1844334770}
@@ -16001,6 +16003,7 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  enemyControl: {fileID: 0}
   itemPrefab: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
     type: 3}
   container: {fileID: 1844334770}
@@ -18427,6 +18430,7 @@ MonoBehaviour:
     coldownAttack: 0
     resetColdown: 0
     attackReady: 0
+  enemyControl: {fileID: 0}
   itemPrefab: {fileID: 7547301973704610134, guid: e313d1a5cd0bc6345b1dfde947f2e51f,
     type: 3}
   container: {fileID: 1844334770}
@@ -31507,6 +31511,11 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 4013213066188287871}
+    - target: {fileID: 3678044528824698636, guid: d8f604a3859c0dc4c94aa73e2058e101,
+        type: 3}
+      propertyPath: m_text
+      value: Epic Quest
+      objectReference: {fileID: 0}
     - target: {fileID: 3678044530040683004, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_RootOrder
@@ -31570,22 +31579,22 @@ PrefabInstance:
     - target: {fileID: 3678044530159212319, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678044530159212319, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.81711084
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678044530159212319, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.11451666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678044530450536590, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3678044530450536594, guid: d8f604a3859c0dc4c94aa73e2058e101,
         type: 3}
